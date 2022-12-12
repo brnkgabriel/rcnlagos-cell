@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col font-body relative w-full h-full min-h-screen max-w-[576px] mx-auto">
+  <div class="flex flex-col inset-0 font-body relative w-full h-screen min-h-screen max-w-[576px] mx-auto">
     <div class="flex justify-center items-center bg-main-500 absolute top-[40vh] left-[16px] w-[60px] h-[60px] rounded-lg p-2 z-10 -translate-y-1/2">
       <img src="/icons/logo.svg" alt="logo"/>
     </div>
