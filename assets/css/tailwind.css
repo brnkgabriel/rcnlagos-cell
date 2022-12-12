@@ -7,18 +7,4 @@
 
 html, body, #__nuxt {
   @apply h-full
-  /* @apply min-h-screen */
-}
-
-html {
-  height: -webkit-fill-available;
-}
-
-body, #__nuxt {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
-.h-screen {
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
 }
