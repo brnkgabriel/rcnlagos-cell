@@ -6,10 +6,14 @@
 @tailwind utilities;
 
 html, body, #__nuxt {
-  @apply h-full
+  /* @apply h-full */
   /* @apply min-h-screen */
 }
 
 body {
-    
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+html {
+  height: -webkit-fill-available;
 }
