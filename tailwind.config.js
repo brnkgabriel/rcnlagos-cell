@@ -25,7 +25,9 @@ module.exports = {
       height: {
         '40vh': '40vh',
         '30vh': '30vh',
-        '60vh': '60vh'
+        '60vh': '60vh',
+        '60%' : '60%',
+        '40%' : '40%'
       },
       keyframes: {
 

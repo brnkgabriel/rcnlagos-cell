@@ -1,9 +1,9 @@
 <template>
   <div class="w-full flex-1">
-    <div aria-label="slides" class="relative w-full h-[40%] overflow-hidden">
+    <div aria-label="slides" class="relative w-full h-40% overflow-hidden">
       <div aria-label="slide" class="h-full w-full flex items-center justify-center" :style="slide1Style"></div>
     </div>
-    <div aria-label="bottom content" class="flex flex-col gap-y-6 justify-center items-center">
+    <div aria-label="bottom content" class="flex flex-col gap-y-6 h-60% justify-center items-center">
       <div aria-label="note" class="text-center leading-tight">
         <div aria-label="welcome" class="text-main-500 font-semibold">Welcome to</div>
         <div aria-label="rcnlagos" class="text-main-500 font-semibold">Remnant Christian Network Lagos</div>
