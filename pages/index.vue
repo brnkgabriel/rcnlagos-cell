@@ -1,9 +1,7 @@
 <template>
   <div class="w-full h-full">
     <div aria-label="slides" class="relative w-full h-40vh overflow-hidden">
-      <div aria-label="slide" class="h-full w-full flex items-center justify-center">
-        <img src="/images/prayer_678x452.jpeg" class="object-cover object-center" alt="prayer"/>
-      </div>
+      <div aria-label="slide" class="h-full w-full flex items-center justify-center" :style="slide1Style"></div>
     </div>
     <div aria-label="bottom content" class="flex flex-col gap-y-6 justify-center h-60vh items-center">
       <div aria-label="note" class="text-center leading-tight">
@@ -26,6 +24,8 @@
   </div>
 </template>
 <script setup lang="ts">
+ 
+const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat;background-position:center;background-size:cover`)
 definePageMeta({
   layout: "home",
 });
