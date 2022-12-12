@@ -6,8 +6,8 @@
 @tailwind utilities;
 
 html, body, #__nuxt {
-  /* @apply h-full */
-  @apply min-h-screen
+  @apply h-full
+  /* @apply min-h-screen */
 }
 
 body {
