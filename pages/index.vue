@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full">
+  <div class="w-full flex-1">
     <div aria-label="slides" class="relative w-full h-[40%] overflow-hidden">
       <div aria-label="slide" class="h-full w-full flex items-center justify-center" :style="slide1Style"></div>
     </div>
