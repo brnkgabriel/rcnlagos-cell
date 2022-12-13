@@ -5,8 +5,8 @@
     </div>
     <div aria-label="bottom content" class="flex flex-col gap-y-6 h-60% justify-center items-center">
       <div aria-label="note" class="text-center leading-tight">
-        <div aria-label="welcome" class="text-rcnblue-500 font-semibold">Welcome to</div>
-        <div aria-label="rcnlagos" class="text-rcnblue-500 font-semibold">Remnant Christian Network Lagos</div>
+        <div aria-label="welcome" :class="mainline">Welcome to</div>
+        <div aria-label="rcnlagos" :class="mainline">Remnant Christian Network Lagos</div>
         <div aria-label="footnote" :class="subline">Towards the rebirth of Apostolic Christianity</div>
       </div>
 
@@ -25,7 +25,7 @@
 </template>
 <script setup lang="ts">
 
-const { subline } = useUi()
+const { mainline, subline } = useUi()
  
 const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat;background-position:center;background-size:cover`)
 definePageMeta({

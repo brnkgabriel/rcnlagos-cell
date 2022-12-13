@@ -1,6 +1,6 @@
 <template>
     <div>
-        settings
+      settings
     </div>
 </template>
 <script setup>

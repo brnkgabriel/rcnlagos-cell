@@ -26,11 +26,19 @@ module.exports = {
         },
         rcnred: {
           500: "#F71103"
+        },
+        bglight: {
+          500: "#f5f5f5",
+          700: "#eaeded"
         }
+      },
+      boxShadow: {
+        "custom": "0 2px 5px 0 rgb(0 0 0 / 5%)"
       },
       height: {
         '60%' : '60%',
-        '40%' : '40%'
+        '40%' : '40%',
+        'middle': 'calc(100% - 128px)'
       },
       keyframes: {
 
