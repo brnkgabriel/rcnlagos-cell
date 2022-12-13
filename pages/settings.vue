@@ -1,10 +1,10 @@
 <template>
-    <div :class="subline">
+    <div :class="pageTitle">
       settings
     </div>
 </template>
 <script setup>
-const { subline } = useUi()
+const { pageTitle } = useUi()
 definePageMeta({
   layout: "catalog",
 });

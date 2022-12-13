@@ -27,13 +27,17 @@ module.exports = {
         rcnred: {
           500: "#F71103"
         },
-        bglight: {
+        rcngray: {
           500: "#f5f5f5",
-          700: "#eaeded"
+          700: "#eaeded",
+          900: "#75757a"
         }
       },
       boxShadow: {
         "custom": "0 2px 5px 0 rgb(0 0 0 / 5%)"
+      },
+      width: {
+        'details': 'calc(100% - 150px)'
       },
       height: {
         '60%' : '60%',
