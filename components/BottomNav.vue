@@ -44,16 +44,16 @@
 </template>
 <script setup lang="ts">
 import {
-  HomeModernIcon as EventIconOutline,
   ChatBubbleBottomCenterIcon as MeetingsIconOutline,
   UserGroupIcon as MembersIconOutline,
-  Cog6ToothIcon as SettingsIconOutline
+  Cog6ToothIcon as SettingsIconOutline,
+  CalendarDaysIcon as EventsIconOutline
 } from "@heroicons/vue/24/outline"
 import {
-  HomeModernIcon as EventIconSolid,
   ChatBubbleBottomCenterIcon as MeetingsIconSolid,
   UserGroupIcon as MembersIconSolid,
-  Cog6ToothIcon as SettingsIconSolid
+  Cog6ToothIcon as SettingsIconSolid,
+  CalendarDaysIcon as EventsIconSolid
 } from "@heroicons/vue/24/solid"
 
 const { subline, bottomNavLink, bottomNavLinkIcon } = useUi()
@@ -79,7 +79,7 @@ const meetingsIcon = () => {
 
 const eventsIcon = () => {
   return route.name === 'events'
-    ? EventIconSolid : EventIconOutline
+    ? EventsIconSolid : EventsIconOutline
 }
 
 
