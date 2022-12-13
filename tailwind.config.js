@@ -18,14 +18,17 @@ module.exports = {
         xxs: ['0.25rem', { lineHeight: '1rem' }],
       },
       colors: {
-        main: {
+        rcnblue: {
           500: "#17143D"
+        },
+        rcnorange: {
+          500: "#FD6C03"
+        },
+        rcnred: {
+          500: "#F71103"
         }
       },
       height: {
-        '40vh': '40vh',
-        '30vh': '30vh',
-        '60vh': '60vh',
         '60%' : '60%',
         '40%' : '40%'
       },
