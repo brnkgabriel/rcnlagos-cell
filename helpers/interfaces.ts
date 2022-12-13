@@ -5,4 +5,5 @@ export interface iUi {
   bottomNavLink: string;
   bottomNavLinkIcon: string;
   homeNavLink: string;
+  center: string;
 }
