@@ -42,7 +42,8 @@ module.exports = {
       height: {
         '60%' : '60%',
         '40%' : '40%',
-        'middle': 'calc(100% - 128px)'
+        'middle': 'calc(100% - 128px)',
+        'listheight': 'calc(100% - 207px)'
       },
       keyframes: {
 
