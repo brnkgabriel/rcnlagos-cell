@@ -16,16 +16,16 @@
       </div>
 
       <div aria-label="navigation" class="flex flex-col justify-center items-center gap-y-2">
-        <NuxtLink href="/meetings" class="rounded-full border-rcnblue-500 px-4 py-2 w-[250px] text-center cursor-pointer text-rcnblue-500 font-semibold border-2 text-sm">Meetings</NuxtLink>
-        <NuxtLink href="/members" class="rounded-full border-rcnblue-500 px-4 py-2 w-[250px] text-center cursor-pointer text-rcnblue-500 font-semibold border-2 text-sm">Members</NuxtLink>
-        <NuxtLink href="/events" class="rounded-full border-rcnblue-500 px-4 py-2 w-[250px] text-center cursor-pointer text-rcnblue-500 font-semibold border-2 text-sm">Events</NuxtLink>
+        <NuxtLink href="/events" :class="homeNavLink">Events</NuxtLink>
+        <NuxtLink href="/meetings" :class="homeNavLink">Meetings</NuxtLink>
+        <NuxtLink href="/members" :class="homeNavLink">Members</NuxtLink>
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 
-const { mainline, subline } = useUi()
+const { mainline, subline, homeNavLink } = useUi()
  
 const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat;background-position:center;background-size:cover`)
 definePageMeta({

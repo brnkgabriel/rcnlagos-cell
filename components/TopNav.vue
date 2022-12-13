@@ -1,8 +1,8 @@
 <template>
   <div class="shadow-custom bg-white flex justify-between items-center">
-    <div class="">
-      <img class="h-[36px]" src="/icons/rcn-logo.svg" alt="rcn logo"/>
-    </div>
+    <NuxtLink href="/" class="">
+      <img class="h-[32px]" src="/images/rcn-logo.png" alt="rcn logo"/>
+    </NuxtLink>
     <div aria-label="site name" class="flex flex-col justify-center items-center">
       <div class="uppercase" :class="mainline">oko oba</div>
       <div class="uppercase" :class="subline">prayer cell</div>
