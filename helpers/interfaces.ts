@@ -11,7 +11,7 @@ export interface iUi {
   input: string;
 }
 
-export interface iMembers {
+export interface iMember {
   firstName?: string;
   lastName?: string;
   phoneNumber?: string;
@@ -27,7 +27,7 @@ export interface iMembers {
   role?: string;
 }
 
-export interface iMeetings {
+export interface iMeeting {
   date?: string;
   desc?: string;
   ministers?: string;
@@ -41,7 +41,11 @@ export interface iMeetings {
   map?: string;
 }
 
-export interface iCombined extends iMembers, iMeetings {
+export interface iCombined extends iMember, iMeeting {
   created_at?: Date;
   id?: string;
+}
+
+export interface iConstant {
+  membersApiUrl: string;
 }

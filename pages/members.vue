@@ -16,11 +16,26 @@
 <script setup lang="ts">
 
 const { pageTitle, input } = useUi()
-
 const { name } = useRoute()
-
 // @ts-ignore
 const placeholder = computed(() => "Search for " + name + '...')
+
+const orderBy = ref("created_at")
+
+const { data, pending, error, refresh } = await useLazyFetch(() => constants.membersApiUrl, { params: { orderBy: orderBy.value } })
+
+const members = ref(data.value)
+const errorMessage = ref(error.value)
+
+watch([data, error], () => {
+  members.value = data.value
+  errorMessage.value = error.value
+})
+
+onMounted(async () => {
+  console.log("mounted with members", members.value)
+})
+
 
 definePageMeta({
   layout: "catalog",
