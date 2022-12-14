@@ -7,13 +7,13 @@ import {
   UserGroupIcon as MembersIconOutline,
   Cog6ToothIcon as SettingsIconOutline,
   CalendarDaysIcon as EventsIconOutline
-} from "@heroicons/vue/24/outline"
+} from "@heroicons/vue/24/outline/index"
 import {
   ChatBubbleBottomCenterIcon as MeetingsIconSolid,
   UserGroupIcon as MembersIconSolid,
   Cog6ToothIcon as SettingsIconSolid,
   CalendarDaysIcon as EventsIconSolid
-} from "@heroicons/vue/24/solid"
+} from "@heroicons/vue/24/solid/index"
 
 const settings = computed(() => {
   let icon = null
