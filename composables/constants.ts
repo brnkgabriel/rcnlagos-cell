@@ -1,5 +1,7 @@
-import { iConstant } from "~~/helpers/interfaces";
-
-export const constants: iConstant = {
-  membersApiUrl: "/api/g-members"
+export const constants = {
+  membersApiUrl: "/api/g-members",
+  settings: 'settings',
+  members: 'members',
+  meetings: 'meetings',
+  events: 'events'
 }

@@ -1,17 +1,19 @@
 export interface iUi {
-  mainline: string;
-  subline: string;
-  grayText: string;
-  pageTitle: string;
-  logo: string;
-  bottomNavLink: string;
-  bottomNavLinkIcon: string;
-  homeNavLink: string;
-  center: string;
-  input: string;
+  mainline?: string;
+  subline?: string;
+  grayText?: string;
+  pageTitle?: string;
+  logo?: string;
+  bottomNavLink?: string;
+  bottomNavLinkIcon?: string;
+  homeNavLink?: string;
+  center?: string;
+  input?: string;
 }
 
 export interface iMember {
+  created_at?: Date;
+  id?: string;
   firstName?: string;
   lastName?: string;
   phoneNumber?: string;
@@ -28,6 +30,8 @@ export interface iMember {
 }
 
 export interface iMeeting {
+  created_at?: Date;
+  id?: string;
   date?: string;
   desc?: string;
   ministers?: string;
@@ -41,11 +45,4 @@ export interface iMeeting {
   map?: string;
 }
 
-export interface iCombined extends iMember, iMeeting {
-  created_at?: Date;
-  id?: string;
-}
-
-export interface iConstant {
-  membersApiUrl: string;
-}
+export interface iCombined extends iMember, iMeeting { }

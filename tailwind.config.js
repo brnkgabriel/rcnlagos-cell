@@ -43,7 +43,8 @@ module.exports = {
         '60%' : '60%',
         '40%' : '40%',
         'middle': 'calc(100% - 128px)',
-        'listheight': 'calc(100% - 207px)'
+        'listheight': 'calc(100% - 207px)',
+        'cardlistheight': 'calc(100% - 28px)'
       },
       keyframes: {
 

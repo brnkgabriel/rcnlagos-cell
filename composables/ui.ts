@@ -1,6 +1,6 @@
 import { iUi } from "~~/helpers/interfaces"
 
-const subline = "text-xs font-medium h-[13px]"
+const subline = "text-xs h-[13px]"
 const grayText = "text-rcngray-900"
 const flexCenterCenter = "flex justify-center items-center"
 

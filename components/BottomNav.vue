@@ -4,87 +4,43 @@
       href="/events"
       :class="bottomNavLink">
       <div :class="bottomNavLinkIcon">
-        <component 
-        :is="eventsIcon()"
-        class="w-[24px] h-[24px]"></component>
+        <Icon type="events" class="w-[24px] h-[24px]" :active="route.name === 'events'" />
       </div>
-      <div class="capitalize" :class="subline">events</div>
+      <div class="capitalize" :class="subline + ' ' + color('events')">events</div>
     </NuxtLink>
     <NuxtLink
       href="/meetings"
       :class="bottomNavLink">
       <div :class="bottomNavLinkIcon">
-        <component 
-        :is="meetingsIcon()"
-        class="w-[24px] h-[24px]"></component>
+        <Icon type="meetings" class="w-[24px] h-[24px]" :active="route.name === 'meetings'" />
       </div>
-      <div class="capitalize" :class="subline">meetings</div>
+      <div class="capitalize" :class="subline + ' ' + color('meetings')">meetings</div>
     </NuxtLink>
     <NuxtLink
       href="/members"
       :class="bottomNavLink">
       <div :class="bottomNavLinkIcon">
-        <component 
-        :is="membersIcon()"
-        class="w-[24px] h-[24px]"></component>
+        <Icon type="members" class="w-[24px] h-[24px]" :active="route.name === 'members'" />
       </div>
-      <div class="capitalize" :class="subline">members</div>
+      <div class="capitalize" :class="subline + ' ' + color('members')">members</div>
     </NuxtLink>
     <NuxtLink
       href="/settings"
       :class="bottomNavLink">
       <div :class="bottomNavLinkIcon">
-        <component 
-        :is="settingsIcon()"
-        class="w-[24px] h-[24px]"></component>
+        <Icon type="settings" class="w-[24px] h-[24px]" :active="route.name === 'settings'" />
       </div>
-      <div class="capitalize" :class="subline">settings</div>
+      <div class="capitalize" :class="subline + ' ' + color('settings')">settings</div>
     </NuxtLink>
   </div>
 </template>
 <script setup lang="ts">
-import {
-  ChatBubbleBottomCenterIcon as MeetingsIconOutline,
-  UserGroupIcon as MembersIconOutline,
-  Cog6ToothIcon as SettingsIconOutline,
-  CalendarDaysIcon as EventsIconOutline
-} from "@heroicons/vue/24/outline"
-import {
-  ChatBubbleBottomCenterIcon as MeetingsIconSolid,
-  UserGroupIcon as MembersIconSolid,
-  Cog6ToothIcon as SettingsIconSolid,
-  CalendarDaysIcon as EventsIconSolid
-} from "@heroicons/vue/24/solid"
 
 const { subline, bottomNavLink, bottomNavLinkIcon } = useUi()
 
 const route = useRoute()
-const currentTab = ref("events")
 
-const settingsIcon = () => {
-  return route.name === 'settings'
-    ? SettingsIconSolid : SettingsIconOutline
-}
-
-const membersIcon = () => {
-  return route.name === 'members'
-    ? MembersIconSolid : MembersIconOutline
-}
-
-const meetingsIcon = () => {
-  return route.name === 'meetings'
-    ? MeetingsIconSolid : MeetingsIconOutline
-}
-
-
-const eventsIcon = () => {
-  return route.name === 'events'
-    ? EventsIconSolid : EventsIconOutline
-}
-
-
-
-const changeTab = (tab: string) => currentTab.value = tab
+const color = (type: string) => route.name === type ? `text-rcnblue-500` : `text-rcngray-900`
 </script>
 <style lang="">
     
