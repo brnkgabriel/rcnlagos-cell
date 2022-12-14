@@ -10,7 +10,7 @@
         </div>
         <div aria-label="icons">
           <a :href="constants.whatsappIcon(selected)">
-            <img src="/icons/whatsapp.svg" class="w-[32px]" alt="whatsapp icon"/>
+            <img src="/icons/whatsapp.svg" class="w-[32px] shadow-custom" alt="whatsapp icon"/>
           </a>
         </div>
       </div>
