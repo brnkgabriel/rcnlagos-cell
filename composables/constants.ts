@@ -8,7 +8,6 @@ export const constants = {
   events: 'events',
   occupation: 'occupation',
   whatsappIcon: (member: iMember | null) => {
-
     let number = member ? member.phoneNumber : null
     if (number) {
       switch (number[0]) {
@@ -17,8 +16,10 @@ export const constants = {
           break;
         case "2":
           number = number
+          break;
         case "+":
           number = number.slice(1, number.length)
+          break        
         default:
           number = "234" + number
           break;
