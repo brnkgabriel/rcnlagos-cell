@@ -17,6 +17,8 @@ export const constants = {
           break;
         case "2":
           number = number
+        case "+":
+          number = number.slice(1, number.length)
         default:
           number = "234" + number
           break;
