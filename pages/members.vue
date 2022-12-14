@@ -2,15 +2,14 @@
   <div class="flex flex-col items-start justify-between h-full">
     <div :class="pageTitle">{{name}}</div>
     <div aria-label="preview" class="shadow-custom rounded-lg bg-white w-full h-[150px] overflow-hidden flex justify-center items-center">
-      <img class="h-[150px]" :src="selected.imageUrl" alt=""/>
+      <img class="h-[150px]" :src="selected?.imageUrl" alt=""/>
       <div aria-label="details" class="w-details p-2">
-        <div class="font-bold">{{selected.firstName}}</div>
-        <div>{{selected.lastName}}</div>
-        <div :class="subline">{{selected.occupation}}</div>
+        <div :class="mainline">{{memberName(selected)}}</div>
+        <div :class="subline">{{selected?.occupation}}</div>
       </div>
     </div>
     <div aria-label="list" class="h-listheight w-full">
-      <div aria-label="number" class="h-[16px] mt-[8px] mb-[4px] capitalize" :class="subline">{{members.length}} {{name}}</div>
+      <div aria-label="number" class="h-[16px] mt-[8px] mb-[4px] capitalize" :class="subline">{{members?.length}} {{name}}</div>
       <div aria-label="list" class="flex flex-col gap-y-2 w-full h-cardlistheight overflow-auto">
         <MemberItem
           @click="setSelected(member)"
@@ -25,6 +24,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import { Ref } from "vue";
 import { iMember } from "~~/helpers/interfaces" 
 
 const { pageTitle, input, subline, mainline } = useUi()
@@ -38,15 +38,22 @@ const typeData = (data: any) => data as iMember[]
 const { data, pending, error, refresh } = await useLazyFetch(() => constants.membersApiUrl, { params: { orderBy: orderBy.value } })
 
 const members = ref(typeData(data.value))
+const selected:Ref<iMember | null> = ref(data.value ? typeData(data.value)[0] : null)
 const errorMessage = ref(error.value)
-const selected = ref(members.value[0])
 
 const setSelected = (member: iMember) => selected.value = member
 
 watch([data, error], () => {
   members.value = typeData(data.value)
+  selected.value = typeData(data.value)[0]
+
+  console.log("selected is", selected.value)
   errorMessage.value = error.value
-}) 
+})
+
+// onMounted(async () => {
+//   await refresh()
+// })
 
 
 definePageMeta({

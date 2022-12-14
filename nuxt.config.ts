@@ -53,4 +53,7 @@ export default defineNuxtConfig({
       lang: "en"
     }
   },
+  build: {
+    transpile: ['@heroicons/vue']
+  }
 })
