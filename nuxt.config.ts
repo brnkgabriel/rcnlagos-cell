@@ -56,4 +56,12 @@ export default defineNuxtConfig({
   // build: {
   //   transpile: ['@heroicons/vue']
   // }
+  build: {
+    transpile: ['@heroicons/vue']
+  },
+  vite: {
+    optimizeDeps: {
+      exclude: ['@heroicons/vue']
+    }
+  }
 })
