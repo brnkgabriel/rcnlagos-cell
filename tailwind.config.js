@@ -37,7 +37,9 @@ module.exports = {
         "custom": "0 2px 5px 0 rgb(0 0 0 / 5%)"
       },
       width: {
-        'details': 'calc(100% - 150px)'
+        'details': 'calc(100% - 150px)',
+        'listitemdetails': 'calc(100% - 64px)',
+        'card': 'calc(100% - 64px)'
       },
       height: {
         '60%' : '60%',

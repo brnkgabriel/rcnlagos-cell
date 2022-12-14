@@ -3,14 +3,21 @@
     <div :class="pageTitle">{{name}}</div>
     <div aria-label="preview" class="shadow-custom rounded-lg bg-white w-full h-[150px] overflow-hidden flex justify-center items-center">
       <img class="h-[150px]" :src="selected?.imageUrl" alt=""/>
-      <div aria-label="details" class="w-details p-2">
-        <div :class="mainline">{{memberName(selected)}}</div>
-        <div :class="subline">{{selected?.occupation}}</div>
+      <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
+        <div aria-label="text">
+          <div :class="mainline">{{memberName(selected)}}</div>
+          <div :class="subline">{{selected?.occupation}}</div>
+        </div>
+        <div aria-label="icons">
+          <a :href="constants.whatsappIcon(selected)">
+            <img src="/icons/whatsapp.svg" class="w-[32px]" alt="whatsapp icon"/>
+          </a>
+        </div>
       </div>
     </div>
     <div aria-label="list" class="h-listheight w-full">
       <div aria-label="number" class="h-[16px] mt-[8px] mb-[4px] capitalize" :class="subline">{{members?.length}} {{name}}</div>
-      <div aria-label="list" class="flex flex-col gap-y-2 w-full h-cardlistheight overflow-auto">
+      <div aria-label="list" class="w-full h-cardlistheight overflow-auto">
         <MemberItem
           @click="setSelected(member)"
           v-for="(member, idx) in members"
@@ -19,7 +26,7 @@
       </div>
     </div>
     <div aria-label="search" class="h-[40px] w-full">
-      <input type="text" id="search" :class="input" :placeholder="placeholder">
+      <input type="text" id="search" autocomplete="false" :class="input" :placeholder="placeholder">
     </div>
   </div>
 </template>
