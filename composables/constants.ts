@@ -28,6 +28,8 @@ export const constants = {
       number = "234"
     }
 
-    return `https://api.whatsapp.com/send?phone=${number}&text=Hello%20${member?.firstName}`
+    const prefix = member?.gender === 'male' ? "Bro. " : "Sis. "
+
+    return `https://api.whatsapp.com/send?phone=${number}&text=Hello%20${prefix}${member?.firstName}`
   }
 }
