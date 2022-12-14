@@ -5,7 +5,7 @@
       <div aria-label="name" :class="mainline" class="whitespace-nowrap overflow-hidden text-ellipsis w-full">{{name}}</div>
       <div aria-label="subline" class="flex justify-center items-center gap-x-1 w-full" :class="subline">
         <Icon type="occupation" class="w-[16px] h-[16px]" :active="false" />
-        <div class="whitespace-nowrap overflow-hidden text-ellipsis w-full">{{props.item.occupation}}</div>
+        <div class="whitespace-nowrap overflow-x-hidden text-ellipsis w-full">{{props.item.occupation}}</div>
       </div>
     </div>
     <div class="rounded-xl border-white border-[4px] w-[64px] h-[64px] absolute left-full top-1/2 -translate-x-1/2 -translate-y-1/2 bg-rcnorange-500">
