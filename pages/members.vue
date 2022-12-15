@@ -8,9 +8,15 @@
           <div :class="mainline">{{memberName(selected)}}</div>
           <div :class="subline">{{selected?.occupation}}</div>
         </div>
-        <div aria-label="icons">
-          <a :href="constants.whatsappIcon(selected)">
-            <img src="/icons/whatsapp.svg" class="w-[32px] shadow-custom" alt="whatsapp icon"/>
+        <div aria-label="icons" class="flex justify-between items-center w-full">
+          <a :href="constants.whatsappIcon(selected)" class="shadow-custom rounded-full">
+            <img src="/icons/whatsapp.svg" class="w-[32px]" alt="whatsapp icon"/>
+          </a>
+          <a :href="'tel:+234' + phone(selected?.phoneNumber)" class="shadow-custom rounded-full p-2 bg-rcnblue-500 w-[32px] flex justify-center items-center">
+            <Icon type="phonecall" :active="true" class="w-[16px] text-white" />
+          </a>
+          <a :href="editUrl(selected)" class="shadow-custom rounded-full p-2 bg-rcnblue-500 w-[32px] flex justify-center items-center">
+            <Icon type="edit" :active="true" class="w-[16px] text-white" />
           </a>
         </div>
       </div>
@@ -49,6 +55,13 @@ const selected:Ref<iMember | null> = ref(data.value ? typeData(data.value)[0] : 
 const errorMessage = ref(error.value)
 
 const setSelected = (member: iMember) => selected.value = member
+
+const editUrl = (member: iMember | null) => {
+  if (!member) return "/member"
+  const firstName = member.firstName?.split(' ').join('-').toLowerCase()
+  const lastName = member.lastName?.split(' ').join('-').toLowerCase()
+  return `/${firstName}-${lastName}`
+}
 
 watch([data, error], () => {
   members.value = typeData(data.value)
