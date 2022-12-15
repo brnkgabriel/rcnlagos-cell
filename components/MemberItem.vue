@@ -8,7 +8,7 @@
         <div class="whitespace-nowrap overflow-x-clip text-ellipsis w-full">{{props.item.occupation}}</div>
       </div>
     </div>
-    <div class="rounded-xl border-white border-[4px] w-[64px] h-[64px] absolute left-full top-1/2 -translate-x-1/2 -translate-y-1/2 bg-rcnorange-500 shadow-custom">
+    <div class="rounded-xl border-white border-[4px] w-[64px] h-[64px] absolute left-full top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white shadow-custom">
 
     </div>
   </div>
