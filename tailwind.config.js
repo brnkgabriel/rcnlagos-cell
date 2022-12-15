@@ -41,7 +41,7 @@ module.exports = {
       },
       width: {
         'details': 'calc(100% - 150px)',
-        'listitemdetails': 'calc(100% - 64px)',
+        'listitemdetails': 'calc(100% - 70px)',
         'card': 'calc(100% - 64px)'
       },
       height: {
