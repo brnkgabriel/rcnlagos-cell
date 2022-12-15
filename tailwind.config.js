@@ -33,6 +33,9 @@ module.exports = {
           900: "#75757a"
         }
       },
+      fontSize: {
+        'xxs': '8px'
+      },
       boxShadow: {
         "custom": "0 2px 5px 0 rgb(0 0 0 / 5%)"
       },

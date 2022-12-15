@@ -1,6 +1,7 @@
 import { iUi } from "~~/helpers/interfaces"
 
 const subline = "text-xs h-[13px]"
+const tiny = "text-xxs font-bold"
 const grayText = "text-rcngray-900"
 const flexCenterCenter = "flex justify-center items-center"
 
@@ -9,7 +10,7 @@ export const useUi = ():iUi => {
     mainline: "text-rcnblue-500 font-semibold",
     subline,
     grayText,
-    pageTitle: grayText + " uppercase mb-1 " + subline,
+    breadcrumb: grayText + " uppercase mb-1 " + tiny,
     logo: flexCenterCenter + " bg-white shadow-custom absolute top-[40%] left-[16px] w-[50px] h-[50px] rounded-full p-2 z-10 -translate-y-1/2",
     bottomNavLink: flexCenterCenter + " flex-col",
     bottomNavLinkIcon: flexCenterCenter + " w-[32px] h-[32px]",

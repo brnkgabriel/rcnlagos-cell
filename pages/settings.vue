@@ -1,10 +1,8 @@
 <template>
-    <div :class="pageTitle">
-      {{name}}
-    </div>
+  <div :class="breadcrumb">home &gt;&gt; {{name}}</div>
 </template>
-<script setup>
-const { pageTitle } = useUi()
+<script setup lang="ts">
+const { breadcrumb } = useUi()
 const { name } = useRoute()
 definePageMeta({
   layout: "catalog",

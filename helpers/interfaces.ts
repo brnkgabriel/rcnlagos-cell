@@ -2,7 +2,7 @@ export interface iUi {
   mainline?: string;
   subline?: string;
   grayText?: string;
-  pageTitle?: string;
+  breadcrumb?: string;
   logo?: string;
   bottomNavLink?: string;
   bottomNavLinkIcon?: string;

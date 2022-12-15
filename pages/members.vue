@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-start justify-between h-full">
-    <div :class="pageTitle">{{name}}</div>
+    <div :class="breadcrumb">home &gt;&gt; {{name}}</div>
     <div aria-label="preview" class="shadow-custom rounded-lg bg-white w-full h-[150px] overflow-hidden flex justify-center items-center">
       <img class="h-[150px]" :src="selected?.imageUrl" alt=""/>
       <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div aria-label="list" class="h-listheight w-full">
-      <div aria-label="number" class="h-[16px] mt-[8px] mb-[4px] capitalize" :class="subline">{{members?.length}} {{name}}</div>
+      <div aria-label="number" class="mt-[8px] mb-[4px] uppercase" :class="breadcrumb">{{members?.length}} {{name}}</div>
       <div aria-label="list" class="w-full h-cardlistheight overflow-auto">
         <MemberItem
           @click="setSelected(member)"
@@ -40,7 +40,7 @@
 import { Ref } from "vue";
 import { iMember } from "~~/helpers/interfaces" 
 
-const { pageTitle, input, subline, mainline } = useUi()
+const { breadcrumb, input, subline, mainline } = useUi()
 const { name } = useRoute()
 // @ts-ignore
 const placeholder = computed(() => "Search for " + name + '...')
