@@ -46,3 +46,9 @@ export interface iMeeting {
 }
 
 export interface iCombined extends iMember, iMeeting { }
+
+export interface iObserver {
+  pLabel: string; // parent label
+  cLabel: string; // child label
+  direction: string; // direction of scroll
+}

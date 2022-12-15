@@ -23,7 +23,7 @@
     </div>
     <div aria-label="list" class="h-listheight w-full">
       <div aria-label="number" class="mt-[8px] mb-[4px] uppercase" :class="breadcrumb">{{members?.length}} {{name}}</div>
-      <div aria-label="list" class="w-full h-cardlistheight overflow-auto">
+      <div aria-label="membersList" class="w-full h-cardlistheight overflow-auto">
         <MemberItem
           @click="setSelected(member)"
           v-for="(member, idx) in members"
@@ -41,10 +41,14 @@ import { Ref } from "vue";
 import { iMember } from "~~/helpers/interfaces" 
 
 const { breadcrumb, input, subline, mainline } = useUi()
+const { observer } = useObserver({
+  cLabel: constants.membersItem,
+  pLabel: constants.membersList,
+  direction: constants.vertical
+})
 const { name } = useRoute()
 // @ts-ignore
 const placeholder = computed(() => "Search for " + name + '...')
-
 const orderBy = ref("created_at")
 
 const typeData = (data: any) => data as iMember[]
@@ -71,9 +75,14 @@ watch([data, error], () => {
   errorMessage.value = error.value
 })
 
-// onMounted(async () => {
-//   await refresh()
-// })
+onMounted(async () => {
+  // await refresh()
+  observer.start()
+})
+
+onBeforeUnmount(() => {
+  observer.end()
+})
 
 
 definePageMeta({

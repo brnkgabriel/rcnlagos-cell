@@ -19,6 +19,10 @@ export const constants = {
   occupation: 'occupation',
   phonecall: 'phonecall',
   edit: 'edit',
+  membersItem: 'membersItem',
+  membersList: 'membersList',
+  vertical: 'vertical',
+  horizontal: 'horizontal',
   whatsappIcon: (member: iMember | null) => {
     let number = member ? member?.phoneNumber : "234"
     // @ts-ignore
