@@ -1,3 +1,5 @@
+import { Ref } from "vue"
+
 export interface iUi {
   mainline?: string;
   subline?: string;
@@ -51,4 +53,6 @@ export interface iObserver {
   pLabel: string; // parent label
   cLabel: string; // child label
   direction: string; // direction of scroll
+  renderedMembers: Ref<iMember[]>,
+  members: Ref<iMember[]>
 }

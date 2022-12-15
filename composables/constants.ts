@@ -23,6 +23,7 @@ export const constants = {
   membersList: 'membersList',
   vertical: 'vertical',
   horizontal: 'horizontal',
+  div: 'div',
   whatsappIcon: (member: iMember | null) => {
     let number = member ? member?.phoneNumber : "234"
     // @ts-ignore

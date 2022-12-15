@@ -26,7 +26,7 @@
       <div aria-label="membersList" class="w-full h-cardlistheight overflow-auto">
         <MemberItem
           @click="setSelected(member)"
-          v-for="(member, idx) in members"
+          v-for="(member, idx) in renderedMembers"
           :item="member"
           :key="idx"/>
       </div>
@@ -41,11 +41,6 @@ import { Ref } from "vue";
 import { iMember } from "~~/helpers/interfaces" 
 
 const { breadcrumb, input, subline, mainline } = useUi()
-const { observer } = useObserver({
-  cLabel: constants.membersItem,
-  pLabel: constants.membersList,
-  direction: constants.vertical
-})
 const { name } = useRoute()
 // @ts-ignore
 const placeholder = computed(() => "Search for " + name + '...')
@@ -55,6 +50,14 @@ const typeData = (data: any) => data as iMember[]
 const { data, pending, error, refresh } = await useLazyFetch(() => constants.membersApiUrl, { params: { orderBy: orderBy.value } })
 
 const members = ref(typeData(data.value))
+const renderedMembers = ref(members.value.slice(0, 4))
+const { observer } = useObserver({
+  cLabel: constants.membersItem,
+  pLabel: constants.membersList,
+  direction: constants.vertical,
+  renderedMembers,
+  members
+})
 const selected:Ref<iMember | null> = ref(data.value ? typeData(data.value)[0] : null)
 const errorMessage = ref(error.value)
 

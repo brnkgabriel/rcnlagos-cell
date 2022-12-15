@@ -1,5 +1,5 @@
 <template>
-  <component :is="settings.icon" :class="settings.color" />
+  <component :is="comp.icon" :class="comp.color" />
 </template>
 <script setup lang="ts">
 import {
@@ -21,7 +21,7 @@ import {
   PencilIcon as EditIconSolid
 } from "@heroicons/vue/24/solid/index"
 
-const settings = computed(() => {
+const comp = computed(() => {
   let icon = null
   let color = props.active ? 'text-rcnblue-500' : 'text-rcngray-900'
   switch (props.type) {

@@ -36,6 +36,10 @@ class Observer {
     this.items.forEach(item => this.intObserver?.observe(item))
   }
 
+  newItem() {
+    const elm = document.createElement(constants.div)
+  }
+
   observation(entries: IntersectionObserverEntry[]) {
     entries.forEach(entry => {
       const target = entry.target
