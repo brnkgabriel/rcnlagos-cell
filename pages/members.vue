@@ -32,7 +32,7 @@
       </div>
     </div>
     <div aria-label="search" class="h-[40px] w-full">
-      <input type="text" id="search" autocomplete="false" :class="input" :placeholder="placeholder">
+      <input type="text" id="search" autocomplete="off" :class="input" :placeholder="placeholder">
     </div>
   </div>
 </template>
