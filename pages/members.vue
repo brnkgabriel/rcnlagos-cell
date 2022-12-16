@@ -27,13 +27,10 @@
     <div aria-label="list" class="h-listheight w-full">
       <div aria-label="number" class="mt-[8px] mb-[4px] uppercase" :class="breadcrumb">{{ memberState.members.length }}
         {{ name }}</div>
-      <div v-if="memberState.rendered" ref="membersRoot" aria-label="membersList" class="w-full h-cardlistheight overflow-auto" v-infinite-scroll>
-        <MemberItem 
-          v-for="(member, idx) in memberState.rendered"
-          @click="setSelected(member)" 
-          :key="idx"
-          :class="position(idx, memberState.rendered)"
-          :item="member" />
+      <div v-if="memberState.rendered" ref="membersRoot" aria-label="membersList"
+        class="w-full h-cardlistheight overflow-auto" v-infinite-scroll>
+        <MemberItem v-for="(member, idx) in memberState.rendered" @click="setSelected(member)" :key="idx"
+          :class="position(idx, memberState.rendered)" :item="member" />
       </div>
     </div>
     <div aria-label="search" class="h-[40px] w-full">
@@ -48,7 +45,7 @@ import { vInfiniteScroll } from "~~/helpers/directives";
 const { breadcrumb, input, subline, mainline } = useUi()
 const { memberState, setMembers, setRendered, setSelected } = useMemberState()
 const { name } = useRoute()
-const { data, pending, error } = await useLazyFetch(() => constants.membersApiUrl)
+const { data, error } = await useLazyFetch(() => constants.membersApiUrl)
 
 const members: iMember[] | null = typeMember(data.value)
 const placeholder = computed(() => `Search for ${name as string} ...`)
@@ -57,23 +54,23 @@ const errorMessage = ref(error.value)
 const maxItemsToLoad = 4
 
 setMembers(members ? members : [])
-setRendered(members ? members.slice(0,maxItemsToLoad) : [])
-setSelected(members ? members[0] : {}) 
+setRendered(members ? members.slice(0, maxItemsToLoad) : [])
+setSelected(members ? members[0] : {})
 
 watch(data, () => {
   const members = typeMember(data.value)
   errorMessage.value = error.value
 
   setMembers(members ? members : [])
-  setRendered(members ? members.slice(0,maxItemsToLoad) : [])
+  setRendered(members ? members.slice(0, maxItemsToLoad) : [])
   setSelected(members ? members[0] : {})
 })
- 
+
 onMounted(() => {
   // await refresh()
   // observer.start() 
 })
- 
+
 definePageMeta({ layout: "catalog" });
 </script>
 <style lang="">
