@@ -87,8 +87,7 @@ const observe = () => {
   const observation = (entries: IntersectionObserverEntry[]) => {
     const entry = entries[0]
     if (!entry.isIntersecting) return
-    loadMore()
-
+    loadMore() 
     entry.target.classList.remove("last")
     observer.value?.unobserve(entry.target) 
   }
