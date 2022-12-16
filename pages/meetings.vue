@@ -6,8 +6,8 @@
     <div aria-label="bottom content" class="flex flex-col gap-y-6 h-60% justify-around items-center">
 
       <div aria-label="title" class="text-center text-rcnblue-500 px-4">
-        <div aria-label="top" class="uppercase font-bold">Meetings</div>
-        <div aria-label="bottom" :class="subline">Our upcoming & previous meetings can be found in the link below</div>
+        <div aria-label="top" :class="mainline">Meetings</div>
+        <div aria-label="bottom" :class="subline_small">Kindly find upcoming & previous meetings @ links below</div>
       </div>
 
       <div aria-label="navigation" class="flex flex-col justify-center items-center gap-y-2 capitalize">
@@ -27,7 +27,7 @@
 </template>
 <script setup lang="ts">
 
-const { mainline, subline, homeNavLink } = useUi()
+const { mainline, subline_small, homeNavLink } = useUi()
  
 const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat;background-position:center;background-size:cover`)
 definePageMeta({

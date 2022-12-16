@@ -4,15 +4,15 @@
       <div aria-label="slide" class="h-full w-full flex items-center justify-center" :style="slide1Style"></div>
     </div>
     <div aria-label="bottom content" class="flex flex-col gap-y-6 h-60% justify-center items-center">
-      <div aria-label="note" class="text-center leading-tight">
-        <div aria-label="welcome" :class="mainline_small">Welcome to</div>
-        <div aria-label="rcnlagos" :class="mainline_small">Remnant Christian Network Lagos</div>
+      <div aria-label="note" class="text-center">
+        <div aria-label="welcome" :class="mainline">Welcome to</div>
+        <div aria-label="rcnlagos" :class="mainline">Remnant Christian Network Lagos</div>
         <div aria-label="footnote" :class="subline_small">Towards the rebirth of Apostolic Christianity</div>
       </div>
 
-      <div aria-label="title" class="text-3xl text-center text-rcnblue-500">
-        <div aria-label="top" class="uppercase font-bold">oko oba</div>
-        <div aria-label="bottom" class="capitalize" :class="subline_small">prayer cell</div>
+      <div aria-label="title" class="flex flex-col text-center text-rcnblue-500">
+        <div aria-label="top" class="uppercase font-bold text-3xl">oko oba</div>
+        <div aria-label="bottom" class="capitalize font-bold" :class="subline_small">prayer cell</div>
       </div>
 
       <div aria-label="navigation" class="flex flex-col justify-center items-center gap-y-2">
@@ -25,7 +25,7 @@
 </template>
 <script setup lang="ts">
 
-const { mainline_small, subline_small, homeNavLink } = useUi()
+const { mainline_small, subline_small, homeNavLink, mainline } = useUi()
  
 const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat;background-position:center;background-size:cover`)
 definePageMeta({
