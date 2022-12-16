@@ -42,7 +42,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Ref } from "vue";
 import { iMember } from "~~/helpers/interfaces"
 import { vInfiniteScroll } from "~~/helpers/directives";
 
@@ -52,12 +51,10 @@ const { name } = useRoute()
 const { data, pending, error } = await useLazyFetch(() => constants.membersApiUrl)
 
 const members: iMember[] | null = typeMember(data.value)
-const membersRoot:Ref<any> = ref()
 const placeholder = computed(() => `Search for ${name as string} ...`)
 const errorMessage = ref(error.value)
 
 const maxItemsToLoad = 4
-// const iScroll = new InfiniteScroll()
 
 setMembers(members ? members : [])
 setRendered(members ? members.slice(0,maxItemsToLoad) : [])
@@ -71,60 +68,12 @@ watch(data, () => {
   setRendered(members ? members.slice(0,maxItemsToLoad) : [])
   setSelected(members ? members[0] : {})
 })
-
-// observer code
-
-const observer:Ref<IntersectionObserver | null> = ref(null)
-
-watch(pending, () => {
-  if (pending.value === false) {
-    observe()
-    // iScroll.start()
-  }
-})
-
-const observe = () => {
-  const observation = (entries: IntersectionObserverEntry[]) => {
-    const entry = entries[0]
-    if (!entry.isIntersecting) return
-    loadMore() 
-    entry.target.classList.remove("last")
-    observer.value?.unobserve(entry.target) 
-  }
-  const root = el(`div[aria-label="${constants.membersList}"]`)
-  const last = el('div.last')
-  const options = { threshold: 0.5, root }
-  observer.value = new IntersectionObserver(observation, options)
-
-  observer.value.observe(last)
-
-  const loadMore = () => {
-    const sIdx = memberState.value.rendered.length
-    const eIdx = sIdx + maxItemsToLoad
-    const more =  memberState.value.members.slice(sIdx, eIdx) 
-    memberState.value.rendered.push(...more)
-  }
-}
-
-onUpdated(() => {
-  const last = el('div.last') 
-  observer.value?.observe(last)
-  // iScroll.reObserve()
-})
-
+ 
 onMounted(() => {
   // await refresh()
   // observer.start() 
 })
-
-
-onBeforeUnmount(() => {
-  // observer.end()
-  // iScroll.end()
-})
-
-// get starting point of next item to load by:
-// pageRef = itemsPerPage * pageNumber
+ 
 definePageMeta({ layout: "catalog" });
 </script>
 <style lang="">

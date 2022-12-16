@@ -7,12 +7,6 @@ interface iData {
   observation: (entries: IntersectionObserverEntry[]) => void
 }
 
-
-const loadMore = () => {
-  const { memberState } = useMemberState()
-  console.log("loading more from directive, memberState is", memberState.value)
-}
-
 const data: iData = {
   last: null,
   maxItem: 4,
@@ -21,9 +15,18 @@ const data: iData = {
     const entry = entries[0]
     if (!entry.isIntersecting) return
     loadMore()
-    // entry.target.classList.remove("last")
-    // data.observer?.unobserve(entry.target)
+    entry.target.classList.remove("last")
+    data.observer?.unobserve(entry.target)
   }
+}
+
+const loadMore = () => {
+  const { memberState } = useMemberState()
+  const sIdx = memberState.value.rendered.length
+  const eIdx = sIdx + data.maxItem
+  const more = memberState.value.members.slice(sIdx, eIdx)
+  memberState.value.rendered.push(...more)
+  console.log("loading more from directive, memberState is", memberState.value)
 }
 
 export const vInfiniteScroll = {
@@ -42,6 +45,9 @@ export const vInfiniteScroll = {
   },
   updated: (ele: Element) => {
     vInfiniteScroll.init(ele, "updated")
+    const last = el('.last', ele as HTMLElement)
+    data.last = last
+    data.observer?.observe(data.last as Element)
   },
   mounted: (ele: Element) => {
     vInfiniteScroll.init(ele, "mounted") 
