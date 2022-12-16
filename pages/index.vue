@@ -12,7 +12,7 @@
 
       <div aria-label="title" class="flex flex-col text-center text-rcnblue-500">
         <div aria-label="top" class="uppercase font-bold text-3xl">oko oba</div>
-        <div aria-label="bottom" class="capitalize font-bold" :class="subline_small">prayer cell</div>
+        <div aria-label="bottom" class="uppercase font-bold text-3xl">prayer cell</div>
       </div>
 
       <div aria-label="navigation" class="flex flex-col justify-center items-center gap-y-2">
