@@ -9,7 +9,7 @@ interface iData {
 
 const data: iData = {
   last: null,
-  maxItem: 4,
+  maxItem: 10,
   observer: null,
   observation: (entries: IntersectionObserverEntry[]) => {
     const entry = entries[0]

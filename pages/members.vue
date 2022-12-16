@@ -52,7 +52,7 @@ const members: iMember[] | null = typeMember(data.value)
 const placeholder = computed(() => `Search for ${name as string} ...`)
 const errorMessage = ref(error.value)
 
-const maxItemsToLoad = 4
+const maxItemsToLoad = 10
 
 setMembers(members ? members : [])
 setRendered(members ? members.slice(0, maxItemsToLoad) : [])
