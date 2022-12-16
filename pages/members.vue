@@ -5,9 +5,9 @@
       class="shadow-custom rounded-lg bg-white w-full h-[150px] overflow-hidden flex justify-center items-center">
       <img class="h-[150px]" :src="imgSrc(memberState.selected?.imageUrl as string)" alt="" />
       <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
-        <div aria-label="text">
-          <div :class="mainline">{{ memberName(memberState.selected) }}</div>
-          <div :class="subline">{{ memberState.selected?.occupation }}</div>
+        <div aria-label="text" class="w-full">
+          <div :class="mainline + ' ' + texttrim">{{memberName(memberState.selected)}}</div>
+          <div :class="subline + ' ' + texttrim">{{ memberState.selected?.occupation }}</div>
         </div>
         <div aria-label="birthday" :class="subline" class="text-xxs font-semibold">{{ memberState.selected?.birthday }}</div>
         <div aria-label="icons" class="flex justify-between items-center w-full">
@@ -29,7 +29,7 @@
       <div aria-label="number" class="mt-[8px] mb-[4px] uppercase" :class="breadcrumb">{{ memberState.members.length }}
         {{ name }}</div>
       <div v-if="memberState.rendered" ref="membersRoot" aria-label="membersList"
-        class="w-full h-cardlistheight overflow-auto" v-infinite-scroll>
+        class="w-full h-cardlistheight overflow-auto flex flex-wrap gap-2" v-infinite-scroll>
         <MemberItem v-for="(member, idx) in memberState.rendered" @click="setSelected(member)" :key="idx"
           :class="position(idx, memberState.rendered)" :item="member" />
       </div>
@@ -43,7 +43,7 @@
 import { iMember } from "~~/helpers/interfaces"
 import { vInfiniteScroll } from "~~/helpers/directives";
 
-const { breadcrumb, input, subline, mainline } = useUi()
+const { breadcrumb, input, subline, mainline, texttrim } = useUi()
 const { memberState, setMembers, setRendered, setSelected } = useMemberState()
 const { name } = useRoute()
 const { data, error } = await useLazyFetch(() => constants.membersApiUrl)

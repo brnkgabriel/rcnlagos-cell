@@ -1,6 +1,6 @@
 import { iUi } from "~~/helpers/interfaces"
 
-const subline = "text-xs h-[13px]"
+const subline = "text-xs"
 const tiny = "text-xxs font-bold"
 const grayText = "text-rcngray-900"
 const flexCenterCenter = "flex justify-center items-center"
@@ -8,6 +8,7 @@ const flexCenterCenter = "flex justify-center items-center"
 export const useUi = () => {
   return {
     mainline: "text-rcnblue-500 font-semibold text-sm",
+    texttrim: "w-full overflow-hidden whitespace-nowrap text-ellipsis",
     subline,
     grayText,
     breadcrumb: grayText + " uppercase mb-1 " + tiny,
