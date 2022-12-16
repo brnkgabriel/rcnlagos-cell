@@ -1,70 +1,52 @@
-import { iCombined, iObserver } from "~~/helpers/interfaces";
+import { iCombined, iMember, iMemberState, iObserver } from "~~/helpers/interfaces"; 
 
-export const useObserver = (options: iObserver) => {
-  const observer: Observer = new Observer(options)
-  return {
-    observer
-  }
-}
 
-class Observer {
-  private items: NodeListOf<Element> | null = null
-  private visibleItems: NodeListOf<Element> | null = null
-  private root: Element | null = null
-  private options: iObserver;
-  private intObserver: IntersectionObserver | null = null
-  private itemsQuery: () => string
-  private rootQuery: () => string
-  private visibleQuery: () => string
+export class InfiniteScroll {
+  private observer!: IntersectionObserver
+  private maxItems: number = 4
 
-  constructor(options: iObserver) {
-    this.options = options
-    this.itemsQuery = () => `div[aria-label="${this.options.cLabel}"]`
-    this.rootQuery = () => `div[aria-label="${this.options.pLabel}"]`
-    this.visibleQuery = () => `${this.itemsQuery()}:not(.hidden)`
+  constructor() {
+
   }
 
   start() {
-    this.items = all(this.itemsQuery())
-    this.root = el(this.rootQuery())
-
-    const rootMargin = this.rootMargin(this.options.direction)
-    const options = { rootMargin, threshold: 0.5, root: this.root }
-
-    this.intObserver = new IntersectionObserver(this.observation.bind(this), options)
+    const root = el(`div[aria-label="${constants.membersList}"]`)
+    const last = el('div.last')
     
-    this.items.forEach(item => this.intObserver?.observe(item))
-  }
+    const options = { threshold: 0.5, root }
 
-  newItem() {
-    const elm = document.createElement(constants.div)
+    this.observer = new IntersectionObserver(this.observation.bind(this), options)
+
+    this.observer.observe(last)
   }
 
   observation(entries: IntersectionObserverEntry[]) {
-    entries.forEach(entry => {
-      const target = entry.target
-      if (entry.isIntersecting) {
-        target.classList.remove("hidden")
-      } else {
-        target.classList.add("hidden")
-      }
-    })
-    this.visibleItems = all(this.visibleQuery())
-    console.log("visible items", this.visibleItems)
+    const entry = entries[0]
+    if (!entry.isIntersecting) return
+    this.loadMore()
+
+    entry.target.classList.remove("last")
+    this.observer.unobserve(entry.target)
   }
 
-  rootMargin(direction: string) {
-    switch (direction) {
-      case constants.vertical: return "50px 0px 50px 0px"
-      case constants.horizontal: return "0px 50px 0px 50px"
-      default: return "0px";
-    }
+  reObserve() {
+    const last = el("div.last")
+    console.log("reobserving last", last)
+    if (!last) this.observer.observe(last)
+  }
+
+  loadMore() {
+    const { memberState } = useMemberState()
+    const sIdx = memberState.value.rendered.length
+    const eIdx = sIdx + this.maxItems
+    const more = memberState.value.members.slice(sIdx, eIdx)
+    console.log("to load more", more)
+    memberState.value.rendered.push(...more)
   }
 
   end() {
-    this.items?.forEach(item => this.intObserver?.unobserve(item))
-    this.items = null
-    this.root = null
-    this.intObserver = null
+    const last = el("div.last")
+    console.log("unobserving last", last)
+    last && this.observer.unobserve(last)
   }
 }

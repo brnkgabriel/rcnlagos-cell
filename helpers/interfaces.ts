@@ -52,7 +52,11 @@ export interface iCombined extends iMember, iMeeting { }
 export interface iObserver {
   pLabel: string; // parent label
   cLabel: string; // child label
-  direction: string; // direction of scroll
-  renderedMembers: Ref<iMember[]>,
-  members: Ref<iMember[]>
+  direction: string; // direction of scroll 
+}
+
+export interface iMemberState {
+  members: iMember[];
+  rendered: iMember[];
+  selected: iMember;
 }
