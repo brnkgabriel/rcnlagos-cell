@@ -9,6 +9,7 @@
           <div :class="mainline">{{ memberName(memberState.selected) }}</div>
           <div :class="subline">{{ memberState.selected?.occupation }}</div>
         </div>
+        <div aria-label="birthday" :class="subline" class="text-xxs font-semibold">{{ memberState.selected?.birthday }}</div>
         <div aria-label="icons" class="flex justify-between items-center w-full">
           <a :href="constants.whatsappIcon(memberState.selected)" class="shadow-custom rounded-full">
             <img src="/icons/whatsapp.svg" class="w-[32px]" alt="whatsapp icon" />
