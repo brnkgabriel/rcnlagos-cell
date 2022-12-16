@@ -3,7 +3,7 @@
     <div :class="breadcrumb">home &gt;&gt; {{ name }}</div>
     <div aria-label="preview"
       class="shadow-custom rounded-lg bg-white w-full h-[150px] overflow-hidden flex justify-center items-center">
-      <img class="h-[150px]" :src="memberState.selected?.imageUrl" alt="" />
+      <img class="h-[150px]" :src="imgSrc(memberState.selected?.imageUrl as string)" alt="" />
       <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
         <div aria-label="text">
           <div :class="mainline">{{ memberName(memberState.selected) }}</div>

@@ -3,7 +3,7 @@
     aria-label="membersItem"
     :data-name="memberName(props.item)"
     :class="memberItem">
-    <img :src="src(props.item.imageUrl)" :class="memberItemAvatar" :alt="props.item.firstName"/>
+    <img :src="imgSrc(props.item.imageUrl as string)" :class="memberItemAvatar" :alt="props.item.firstName"/>
     <div aria-label="details" :class="memberItemDetails">
       <div aria-label="name" :class="mainline + ' ' + memberItemName">{{name}}</div>
       <div aria-label="subline" :class="memberItemSubline + ' ' + subline">
@@ -20,8 +20,6 @@
 import { iMember } from "~~/helpers/interfaces"
 
 const name = computed(() => `${props.item.firstName} ${props.item.lastName}`)
-
-const src = (url: string) => url ? url : '/icons/avatar.svg'
 
 const {
   subline,

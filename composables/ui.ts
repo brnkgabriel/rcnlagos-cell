@@ -7,7 +7,7 @@ const flexCenterCenter = "flex justify-center items-center"
 
 export const useUi = () => {
   return {
-    mainline: "text-rcnblue-500 font-semibold",
+    mainline: "text-rcnblue-500 font-semibold text-sm",
     subline,
     grayText,
     breadcrumb: grayText + " uppercase mb-1 " + tiny,
