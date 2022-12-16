@@ -47,7 +47,7 @@ export const vInfiniteScroll = {
     vInfiniteScroll.init(ele, "updated")
     const last = el('.last', ele as HTMLElement)
     data.last = last
-    data.observer?.observe(data.last as Element)
+    if (data.last) data.observer?.observe(data.last as Element)
   },
   mounted: (ele: Element) => {
     vInfiniteScroll.init(ele, "mounted") 
