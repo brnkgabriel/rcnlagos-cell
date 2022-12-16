@@ -51,5 +51,10 @@ export const vInfiniteScroll = {
   },
   mounted: (ele: Element) => {
     vInfiniteScroll.init(ele, "mounted") 
+  },
+  unmounted: (ele: Element) => {
+    const last = el('.last', ele as HTMLElement)
+    data.last = last
+    if (data.last) data.observer?.unobserve(data.last as Element)
   }
 }
