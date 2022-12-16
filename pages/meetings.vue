@@ -1,31 +1,36 @@
 <template>
-  <div class="flex flex-col items-start justify-between h-full">
-    <div :class="breadcrumb">home &gt;&gt; {{name}}</div>
-    <div aria-label="preview" class="shadow-custom rounded-lg bg-white w-full h-[150px] overflow-hidden flex justify-center items-center">
-      <img class="h-[150px]" src="/images/prayer_452x452.png" alt=""/>
-      <div aria-label="details" class="w-details p-2">details</div>
+  <div class="w-full h-full">
+    <div aria-label="slides" class="relative w-full h-40% overflow-hidden">
+      <div aria-label="slide" class="h-full w-full flex items-center justify-center" :style="slide1Style"></div>
     </div>
-    <div aria-label="list" class="h-listheight">
-      
-    </div>
-    <div aria-label="search" class="h-[40px] w-full">
-      <input type="text" id="search" :class="input" :placeholder="placeholder">
+    <div aria-label="bottom content" class="flex flex-col gap-y-6 h-60% justify-around items-center">
+
+      <div aria-label="title" class="text-center text-rcnblue-500 px-4">
+        <div aria-label="top" class="uppercase font-bold">Meetings</div>
+        <div aria-label="bottom" :class="subline">Our upcoming & previous meetings can be found in the link below</div>
+      </div>
+
+      <div aria-label="navigation" class="flex flex-col justify-center items-center gap-y-2 capitalize">
+        <a href="https://us04web.zoom.us/j/75345423965?pwd=1PugyuRN4Fk9_bLTa0K7lfF9LYzXbF.1" :class="homeNavLink" class="relative" target="_blank">
+          <img src="/icons/zoom.svg" class="w-[24px] absolute top-1/2 left-[8px] -translate-y-1/2" alt="google drive"/>
+          <div>upcoming meeting</div>
+        </a>
+        <a href="https://tinyurl.com/42vb8n7y" :class="homeNavLink" class="relative" target="_blank">
+          <img src="/icons/google-drive.svg" class="w-[24px] absolute top-1/2 left-[8px] -translate-y-1/2" alt="google drive"/>
+          <div>previous meetings</div>
+        </a>
+        <NuxtLink href="/events" :class="homeNavLink">Events</NuxtLink>
+        <NuxtLink href="/members" :class="homeNavLink">Members</NuxtLink>
+      </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 
-const { breadcrumb, input } = useUi()
-
-const { name } = useRoute()
-
-// @ts-ignore
-const placeholder = computed(() => "Search for " + name + '...')
-
+const { mainline, subline, homeNavLink } = useUi()
+ 
+const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat;background-position:center;background-size:cover`)
 definePageMeta({
-  layout: "catalog",
+  layout: "home",
 });
 </script>
-<style lang="">
-    
-</style>
