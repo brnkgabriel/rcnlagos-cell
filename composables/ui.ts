@@ -1,7 +1,7 @@
 import { iUi } from "~~/helpers/interfaces"
 
 const subline = "text-xs"
-const tiny = "text-xxs font-bold"
+const tiny = "text-xxxs font-bold"
 const grayText = "text-rcngray-900"
 const flexCenterCenter = "flex justify-center items-center"
 
@@ -9,6 +9,8 @@ export const useUi = () => {
   return {
     mainline: "text-rcnblue-500 font-semibold text-sm",
     texttrim: "w-full overflow-hidden whitespace-nowrap text-ellipsis",
+    mainline_small: "text-rcnblue-500 font-semibold text-xs",
+    subline_small: "text-xxs",
     subline,
     grayText,
     breadcrumb: grayText + " uppercase mb-1 " + tiny,
@@ -18,14 +20,8 @@ export const useUi = () => {
     homeNavLink: "rounded-full bg-white shadow-custom p-3 w-[250px] text-center cursor-pointer text-rcnblue-500 border-2 text-xs",
     center: "absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2",
     input: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-rcnblue-500 focus:border-rcnblue-500 block w-full h-[42px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-rcnblue-500 dark:focus:border-rcnblue-500",
-    memberItem: "flex justify-start items-center my-2 w-card ml-[32px] h-[80px] bg-white rounded-md shadow-custom p-2 cursor-pointer relative",
-    memberItemAvatar: "rounded-full w-[64px] h-[64px] absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2",
-    memberItemDetails: "flex flex-col items-start justify-start w-listitemdetails px-2 absolute top-1/2 left-[32px] -translate-y-1/2",
-    memberItemName: "whitespace-nowrap overflow-hidden text-ellipsis w-full",
-    memberItemSubline: "flex justify-center items-center gap-x-1 w-full",
+    memberItem: "flex flex-col basis-[100px] flex-grow flex-shrink w-1/2 sm:w-1/4 overflow-hidden rounded-md shadow-custom bg-white",
     memberItemOccupationIcon: "w-[16px] h-[16px]",
-    memberItemOccupaion: "whitespace-nowrap overflow-x-clip text-ellipsis w-full",
-    memberItemBirthday: "rounded-xl w-[64px] h-[64px] absolute right-[8px] top-1/2 -translate-y-1/2 bg-white border-2 border-rcngray-500"
   }
 }
 

@@ -34,7 +34,8 @@ module.exports = {
         }
       },
       fontSize: {
-        'xxs': '8px'
+        'xxs': '10px',
+        'xxxs': '8px'
       },
       boxShadow: {
         "custom": "0 2px 5px 0 rgb(0 0 0 / 5%)"
