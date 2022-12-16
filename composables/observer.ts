@@ -49,4 +49,4 @@ export class InfiniteScroll {
     console.log("unobserving last", last)
     last && this.observer.unobserve(last)
   }
-}
+} 

@@ -27,7 +27,7 @@
     <div aria-label="list" class="h-listheight w-full">
       <div aria-label="number" class="mt-[8px] mb-[4px] uppercase" :class="breadcrumb">{{ memberState.members.length }}
         {{ name }}</div>
-      <div v-if="memberState.rendered" ref="membersRoot" aria-label="membersList" class="w-full h-cardlistheight overflow-auto">
+      <div v-if="memberState.rendered" ref="membersRoot" aria-label="membersList" class="w-full h-cardlistheight overflow-auto" v-infinite-scroll>
         <MemberItem 
           v-for="(member, idx) in memberState.rendered"
           @click="setSelected(member)" 
@@ -44,6 +44,7 @@
 <script setup lang="ts">
 import { Ref } from "vue";
 import { iMember } from "~~/helpers/interfaces"
+import { vInfiniteScroll } from "~~/helpers/directives";
 
 const { breadcrumb, input, subline, mainline } = useUi()
 const { memberState, setMembers, setRendered, setSelected } = useMemberState()
@@ -101,15 +102,13 @@ const observe = () => {
   const loadMore = () => {
     const sIdx = memberState.value.rendered.length
     const eIdx = sIdx + maxItemsToLoad
-    const more =  memberState.value.members.slice(sIdx, eIdx)
-    console.log("to load more", more)
+    const more =  memberState.value.members.slice(sIdx, eIdx) 
     memberState.value.rendered.push(...more)
   }
 }
 
 onUpdated(() => {
-  const last = el('div.last')
-  console.log("from onupdated, last is", last)
+  const last = el('div.last') 
   observer.value?.observe(last)
   // iScroll.reObserve()
 })
