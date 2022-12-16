@@ -39,7 +39,7 @@ export const vInfiniteScroll = {
     }
   },
   observe: (ele: Element, from: string) => {
-    const options = { threshold: 0.5, ele }
+    const options = { threshold: 0.5, root: ele, rootMargin: "20px 0px 20px 0px" }
     data.observer = new IntersectionObserver(data.observation, options)
     data.observer.observe(data.last as Element)
   },
