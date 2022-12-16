@@ -6,10 +6,10 @@
       <img class="h-[150px]" :src="imgSrc(memberState.selected?.imageUrl as string)" alt="" />
       <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
         <div aria-label="text" class="w-full">
-          <div :class="mainline + ' ' + texttrim">{{memberName(memberState.selected)}}</div>
-          <div :class="subline + ' ' + texttrim">{{ memberState.selected?.occupation }}</div>
+          <div :class="mainline_small + ' ' + texttrim">{{memberName(memberState.selected)}}</div>
+          <div :class="subline_small + ' ' + texttrim">{{ memberState.selected?.occupation }}</div>
         </div>
-        <div aria-label="birthday" :class="subline" class="text-xxs font-semibold">{{ memberState.selected?.birthday }}</div>
+        <div aria-label="birthday" :class="subline_small" class="text-xxs font-semibold">{{ memberState.selected?.birthday }}</div>
         <div aria-label="icons" class="flex justify-between items-center w-full">
           <a :href="constants.whatsappIcon(memberState.selected)" class="shadow-custom rounded-full">
             <img src="/icons/whatsapp.svg" class="w-[32px]" alt="whatsapp icon" />
@@ -43,7 +43,7 @@
 import { iMember } from "~~/helpers/interfaces"
 import { vInfiniteScroll } from "~~/helpers/directives";
 
-const { breadcrumb, input, subline, mainline, texttrim } = useUi()
+const { breadcrumb, input, subline_small, mainline_small, texttrim } = useUi()
 const { memberState, setMembers, setRendered, setSelected } = useMemberState()
 const { name } = useRoute()
 const { data, error } = await useLazyFetch(() => constants.membersApiUrl)
