@@ -26,8 +26,7 @@
       </div>
     </div>
     <div aria-label="list" class="h-listheight w-full">
-      <div aria-label="number" class="mt-[8px] mb-[4px] uppercase" :class="breadcrumb">{{ memberState.searched.length }}
-        {{ name }}</div>
+      <div aria-label="number" class="mt-[8px] mb-[4px] uppercase" :class="breadcrumb">{{ memberState.searched.length }} member(s)</div>
       <div v-if="memberState.rendered" ref="membersRoot" aria-label="membersList"
         class="w-full h-cardlistheight overflow-auto flex flex-wrap gap-2" v-infinite-scroll>
         <MemberItem v-for="(member, idx) in memberState.rendered" @click="setSelected(member)" :key="idx"
