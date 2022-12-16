@@ -22,11 +22,10 @@ const data: iData = {
 
 const loadMore = () => {
   const { memberState } = useMemberState()
-  const sIdx = memberState.value.rendered.length
+  const sIdx = memberState.value.searched.length
   const eIdx = sIdx + data.maxItem
-  const more = memberState.value.members.slice(sIdx, eIdx)
+  const more = memberState.value.searched.slice(sIdx, eIdx)
   memberState.value.rendered.push(...more)
-  console.log("loading more from directive, memberState is", memberState.value)
 }
 
 export const vInfiniteScroll = {

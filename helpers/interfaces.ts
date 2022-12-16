@@ -59,4 +59,6 @@ export interface iMemberState {
   members: iMember[];
   rendered: iMember[];
   selected: iMember;
+  searched: iMember[];
+  searchTerm: string;
 }

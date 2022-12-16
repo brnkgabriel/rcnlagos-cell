@@ -35,7 +35,13 @@
       </div>
     </div>
     <div aria-label="search" class="h-[40px] w-full">
-      <input type="text" id="search" autocomplete="off" :class="input" :placeholder="placeholder">
+      <input
+        type="text"
+        id="search"
+        autocomplete="off"
+        :class="input"
+        :placeholder="placeholder"
+        v-model="memberState.searchTerm"/>
     </div>
   </div>
 </template>
@@ -44,7 +50,7 @@ import { iMember } from "~~/helpers/interfaces"
 import { vInfiniteScroll } from "~~/helpers/directives";
 
 const { breadcrumb, input, subline_small, mainline_small, texttrim } = useUi()
-const { memberState, setMembers, setRendered, setSelected } = useMemberState()
+const { memberState, setMembers, setRendered, setSelected, setSearched } = useMemberState()
 const { name } = useRoute()
 const { data, error } = await useLazyFetch(() => constants.membersApiUrl)
 
@@ -55,6 +61,7 @@ const errorMessage = ref(error.value)
 const maxItemsToLoad = 10
 
 setMembers(members ? members : [])
+setSearched(members ? members : [])
 setRendered(members ? members.slice(0, maxItemsToLoad) : [])
 setSelected(members ? members[0] : {})
 
@@ -65,6 +72,23 @@ watch(data, () => {
   setMembers(members ? members : [])
   setRendered(members ? members.slice(0, maxItemsToLoad) : [])
   setSelected(members ? members[0] : {})
+})
+
+watchEffect(() => {
+  const term = memberState.value.searchTerm.toLowerCase()
+  const iFound = memberState.value.members.filter(member => {
+    return member.firstName?.toLowerCase().includes(term) ||
+    member.lastName?.toLowerCase().includes(term) ||
+    member.birthday?.toLowerCase().includes(term) ||
+    member.email?.toLowerCase().includes(term) ||
+    member.gender?.toLowerCase().includes(term) ||
+    member.maritalStatus?.toLowerCase().includes(term) ||
+    member.occupation?.toLowerCase().includes(term) ||
+    member.phoneNumber?.toLowerCase().includes(term) ||
+    member.role?.toLowerCase().includes(term)
+  })
+  setSearched(iFound)
+  setRendered(memberState.value.searched.slice(0, maxItemsToLoad))
 })
 
 onMounted(() => {
