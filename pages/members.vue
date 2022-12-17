@@ -91,8 +91,14 @@ watchEffect(() => {
 })
 
 onMounted(() => {
+  console.log("selected", memberState.value)
   // await refresh()
   // observer.start() 
+})
+
+onUpdated(() => {
+  
+  console.log("member state from updated", memberState.value)
 })
 
 definePageMeta({ layout: "catalog" });

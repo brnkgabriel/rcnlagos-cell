@@ -14,6 +14,35 @@ export const imgSrc = (url: string) => url ? url : '/icons/avatar.svg'
 
 export const constants = {
   membersApiUrl: "/api/g-members",
+  monthMap: {
+    january: 1,
+    february: 2,
+    march: 3,
+    april: 4,
+    may: 5,
+    june: 6,
+    july: 7,
+    august: 8,
+    september: 9,
+    october: 10,
+    november: 11,
+    december: 12
+  },
+  monthList: [
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december"
+  ],
+  birthdayMinDuration: "1440",
   home: 'home',
   settings: 'settings',
   members: 'members',

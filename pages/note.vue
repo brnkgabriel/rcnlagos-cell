@@ -1,10 +1,12 @@
-<template>
+<template lang="">
   <div>
-    <input v-focus />
+    
   </div>
 </template>
-<script setup>
-
+<script>
+export default {
+  
+}
 </script>
 <style lang="">
   
