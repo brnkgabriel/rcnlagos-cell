@@ -1,4 +1,5 @@
 import { el } from "~~/composables/ui"
+import { useMemberStore } from "~~/store/members-store";
 
 interface iData {
   maxItem: number;
@@ -15,17 +16,18 @@ const data: iData = {
     const entry = entries[0]
     if (!entry.isIntersecting) return
     loadMore()
+    console.log("intersecting")
     entry.target.classList.remove("last")
     data.observer?.unobserve(entry.target)
   }
 }
 
 const loadMore = () => {
-  const { memberState } = useMemberState()
-  const sIdx = memberState.value.rendered.length
+  const store = useMemberStore()
+  const sIdx = store.rendered.length
   const eIdx = sIdx + data.maxItem
-  const more = memberState.value.searched.slice(sIdx, eIdx)
-  memberState.value.rendered.push(...more)
+  const more = store.searched.slice(sIdx, eIdx)
+  store.addToRender(more)
 }
 
 export const vInfiniteScroll = {
@@ -55,5 +57,14 @@ export const vInfiniteScroll = {
     const last = el('.last', ele as HTMLElement)
     data.last = last
     if (data.last) data.observer?.unobserve(data.last as Element)
+  }
+}
+
+export const vLazyLoad = {
+  updated: (ele: Element) => {
+    const actualImage = el(`img[aria-label="actual image"]`, ele as HTMLElement)
+    const skeletonScreen = el(`img[aria-label="skeleton screen"]`, ele as HTMLElement)
+    skeletonScreen.classList.remove('loaded')
+    actualImage.classList.add('loaded')
   }
 }

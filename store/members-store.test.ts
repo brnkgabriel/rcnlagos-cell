@@ -73,12 +73,12 @@ describe('useMemberStore', () => {
     ]
     store.setMembers(members)
 
-    const searched = store.getSearched
+    const searched = store.searched
 
-    expect(searched[0].birthday).toBe('september 1')
+    expect(searched[0].birthday).toBe('december 17')
     expect(searched[1].birthday).toBe('december 25')
     expect(searched[2].birthday).toBe('december 26')
-    expect(searched[3].birthday).toBe('december 17')
+    expect(searched[3].birthday).toBe('september 1')
   })
 
   test('gets selected member', () => {
@@ -86,7 +86,7 @@ describe('useMemberStore', () => {
 
     store.setSelected(member)
 
-    expect(store.getSelected.firstName).toStrictEqual('samuel')
+    expect(store.selected.firstName).toStrictEqual('samuel')
   })
 
   test('remove member by id', () => {
@@ -106,5 +106,27 @@ describe('useMemberStore', () => {
     store.setMembers(members)
     store.update('4', updatedMember)
     expect(store.getById('4').birthday).toBe('january 18')
+  })
+
+  test('update member by id that does not exist', () => {
+    const members = [
+      { birthday: 'december 17', id: '4' }
+    ]
+    const updatedMember = { birthday: 'january 18', id: '4'}
+    store.setMembers(members)
+    store.update('5', updatedMember)
+    expect(store.getById('5')).toBeUndefined()
+  })
+
+  test('sets rendered members', () => {
+    const members = [
+      { birthday: 'september 1' },
+      { birthday: 'december 25' },
+      { birthday: 'december 26' },
+      { birthday: 'december 17' }
+    ]
+
+    store.setRendered(members)
+    expect(store.rendered[0].birthday).toStrictEqual('september 1')
   })
 })

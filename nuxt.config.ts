@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@kevinmarrec/nuxt-pwa',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@nuxt/image-edge',
   ],
   pwa: {
     workbox: {
