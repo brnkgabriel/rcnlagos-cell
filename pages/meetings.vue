@@ -19,8 +19,8 @@
           <img src="/icons/google-drive.svg" class="w-[24px] absolute top-1/2 left-[8px] -translate-y-1/2" alt="google drive"/>
           <div>previous meetings</div>
         </a>
+        <NuxtLink href="/" :class="homeNavLink">Home</NuxtLink>
         <NuxtLink href="/members" :class="homeNavLink">Members</NuxtLink>
-        <NuxtLink href="/settings" :class="homeNavLink">Settings</NuxtLink>
       </div>
     </div>
   </div>

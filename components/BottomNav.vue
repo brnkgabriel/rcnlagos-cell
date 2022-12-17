@@ -1,12 +1,12 @@
 <template>
-  <div class="flex justify-between items-center gap-x-2 bg-white">
+  <div class="flex justify-center items-center gap-x-8 bg-white">
     <NuxtLink
-      href="/events"
+      href="/"
       :class="bottomNavLink">
       <div :class="bottomNavLinkIcon">
-        <Icon type="events" class="w-[24px] h-[24px]" :active="route.name === 'events'" />
+        <Icon type="home" class="w-[24px] h-[24px]" :active="route.name === 'home'" />
       </div>
-      <div class="capitalize" :class="subline_small + ' ' + color('events')">events</div>
+      <div class="capitalize" :class="subline_small + ' ' + color('home')">home</div>
     </NuxtLink>
     <NuxtLink
       href="/meetings"
@@ -24,14 +24,14 @@
       </div>
       <div class="capitalize" :class="subline_small + ' ' + color('members')">members</div>
     </NuxtLink>
-    <NuxtLink
+    <!-- <NuxtLink
       href="/settings"
       :class="bottomNavLink">
       <div :class="bottomNavLinkIcon">
         <Icon type="settings" class="w-[24px] h-[24px]" :active="route.name === 'settings'" />
       </div>
       <div class="capitalize" :class="subline_small + ' ' + color('settings')">settings</div>
-    </NuxtLink>
+    </NuxtLink> -->
   </div>
 </template>
 <script setup lang="ts">

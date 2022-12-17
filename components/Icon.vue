@@ -3,6 +3,7 @@
 </template>
 <script setup lang="ts">
 import {
+  HomeModernIcon as HomeIconOutline,
   ChatBubbleBottomCenterIcon as MeetingsIconOutline,
   UserGroupIcon as MembersIconOutline,
   Cog6ToothIcon as SettingsIconOutline,
@@ -12,6 +13,7 @@ import {
   PencilIcon as EditIconOutline  
 } from "@heroicons/vue/24/outline/index"
 import {
+  HomeModernIcon as HomeIconSolid,
   ChatBubbleBottomCenterIcon as MeetingsIconSolid,
   UserGroupIcon as MembersIconSolid,
   Cog6ToothIcon as SettingsIconSolid,
@@ -45,6 +47,10 @@ const comp = computed(() => {
       break
     case constants.edit:
       icon = props.active ? EditIconSolid : EditIconOutline
+      break;
+    case constants.home:
+      icon = props.active ? HomeIconSolid : HomeIconOutline
+      break;
     default:
       break;
   }

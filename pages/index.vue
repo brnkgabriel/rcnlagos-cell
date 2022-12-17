@@ -18,7 +18,6 @@
       <div aria-label="navigation" class="flex flex-col justify-center items-center gap-y-2">
         <NuxtLink href="/meetings" :class="homeNavLink">Meetings</NuxtLink>
         <NuxtLink href="/members" :class="homeNavLink">Members</NuxtLink>
-        <NuxtLink href="/settings" :class="homeNavLink">Settings</NuxtLink>
       </div>
     </div>
   </div>
