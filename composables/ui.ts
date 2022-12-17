@@ -29,4 +29,4 @@ export const all = (query: string, parent?: HTMLElement) => parent ? parent.quer
 
 export const el = (query: string, parent?: HTMLElement) => parent ? parent.querySelector(query) as HTMLElement : document.querySelector(query) as HTMLElement
 
-export const position = (idx: number, list: any[]) => idx === list.length - 1 ? "last" : ""
+export const position = (idx: number, list: any[]) => idx === list.length - 1 ? "last" : "others"

@@ -22,7 +22,7 @@ const data: iData = {
 
 const loadMore = () => {
   const { memberState } = useMemberState()
-  const sIdx = memberState.value.searched.length
+  const sIdx = memberState.value.rendered.length
   const eIdx = sIdx + data.maxItem
   const more = memberState.value.searched.slice(sIdx, eIdx)
   memberState.value.rendered.push(...more)
@@ -38,7 +38,7 @@ export const vInfiniteScroll = {
     }
   },
   observe: (ele: Element, from: string) => {
-    const options = { threshold: 0.5, root: ele, rootMargin: "20px 0px 20px 0px" }
+    const options = { threshold: 0.5, root: ele }
     data.observer = new IntersectionObserver(data.observation, options)
     data.observer.observe(data.last as Element)
   },
