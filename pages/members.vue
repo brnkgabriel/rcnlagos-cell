@@ -18,10 +18,10 @@
             class="shadow-custom rounded-full p-2 bg-rcnblue-500 w-[32px] flex justify-center items-center">
             <Icon type="phonecall" :active="true" class="w-[16px] text-white" />
           </a>
-          <a :href="editMemberUrl(store.selected)"
+          <NuxtLink :href="editMemberUrl(store.selected)"
             class="shadow-custom rounded-full p-2 bg-rcnblue-500 w-[32px] flex justify-center items-center">
             <Icon type="edit" :active="true" class="w-[16px] text-white" />
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -37,10 +37,11 @@
       <input
         type="text"
         id="search"
+        name="search"
         autocomplete="off"
         :class="input"
-        :placeholder="placeholder"
-        v-model="searchTerm"/>
+        placeholder="Search for persons"
+        v-model="store.selected.firstName"/>
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 import { setActivePinia, createPinia } from "pinia"
-import { describe, test, expect, beforeAll, afterAll, beforeEach, afterEach } from "vitest"
+import { describe, test, expect, beforeAll, vi, beforeEach, afterEach } from "vitest"
 import { useMemberStore } from "./members-store"
 
 beforeAll(() => {
@@ -9,9 +9,15 @@ beforeAll(() => {
 describe('useMemberStore', () => {
   let store: ReturnType<typeof useMemberStore>
  
-  beforeEach(() => { store = useMemberStore() })
+  beforeEach(() => {
+    vi.useFakeTimers()
+    store = useMemberStore()
+  })
 
-  afterEach(() => store.$reset())
+  afterEach(() => {
+    vi.useRealTimers()
+    store.$reset()
+  })
 
   test('creates a store', () => {
     expect(store).toBeDefined()
@@ -41,6 +47,9 @@ describe('useMemberStore', () => {
       { birthday: 'december 26' },
       { birthday: 'december 17' }
     ]
+
+    const date = new Date(2022, 11, 17)
+    vi.setSystemTime(date)
     store.setMembers(members)
     
     const orderedMembers = store.getOrderedMembers
@@ -64,14 +73,19 @@ describe('useMemberStore', () => {
     expect(store.members[2].birthday).toBe('december 26')
     expect(store.members[3].birthday).toBe('december 17')
   })
-  test('gets searched member list', () => {
+  test('gets searched member list with empty string as input', () => {
     const members = [
       { birthday: 'september 1' },
       { birthday: 'december 25' },
       { birthday: 'december 26' },
       { birthday: 'december 17' }
     ]
+    // the search algorithm reorders by current time
+    // so we need to set the time to December 17, 2022 12am
+    const date = new Date(2022, 11, 17)
+    vi.setSystemTime(date)
     store.setMembers(members)
+    store.setSearched("")
 
     const searched = store.searched
 
@@ -128,5 +142,20 @@ describe('useMemberStore', () => {
 
     store.setRendered(members)
     expect(store.rendered[0].birthday).toStrictEqual('september 1')
+  })
+
+
+  test('add to rendered members', () => {
+    const members = [
+      { birthday: 'september 1' },
+    ]
+    const toAdd = [
+      { birthday: 'september 3' },
+      { birthday: 'september 4' },
+    ]
+
+    store.setRendered(members)
+    store.addToRender(toAdd)
+    expect(store.rendered[1].birthday).toStrictEqual('september 3')
   })
 })
