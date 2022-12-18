@@ -3,6 +3,8 @@ import { constants } from "./constants";
 
 export const memberName = (member: iMember | null) => member?.lastName ? `${member.firstName} ${member.lastName}` : 'loading...'
 
+export const imgSrc = (url: string) => url ? url : '/icons/avatar.svg'
+
 export const editMemberUrl = (member: iMember | null) => {
   if (!member) return "/member"
   const firstName = member.firstName?.split(' ').join('-').toLowerCase()

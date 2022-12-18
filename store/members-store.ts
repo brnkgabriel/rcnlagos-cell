@@ -30,13 +30,15 @@ export const useMemberStore = defineStore('memberStore', {
   actions: {
     setMembers(members: iMember[]) {
       this.members = members
-      this.setSearched("")
     },
     setSearched(term: string) {
       this.searched = search(term, this.getOrderedMembers?.reordered as iCombined[])
     },
     setRendered(members: iMember[]) {
       this.rendered = members
+    },
+    setSelected(member: iMember) {
+      this.selected = { ...this.selected, ...member}
     },
     addToRender(members: iMember[]) {
       this.rendered.push(...members)
@@ -46,9 +48,6 @@ export const useMemberStore = defineStore('memberStore', {
     },
     update(id: string, updateMember: iMember) {
       this.members = this.members.map(member => member.id == id ? updateMember : member)
-    },
-    setSelected(member: iMember) {
-      this.selected = { ...this.selected, ...member}
     }
   }
 })

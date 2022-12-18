@@ -43,8 +43,8 @@
         name="search"
         autocomplete="off"
         :class="input"
-        placeholder="Search for persons"
-        v-model="store.selected.firstName"/>
+        :placeholder="placeholder"
+        v-model="searchTerm"/>
     </div>
   </div>
 </template>
@@ -67,17 +67,18 @@ const maxItemsToLoad = 10
 const searchTerm = ref("")
 
 store.setMembers(members ? members : [])
-store.setSelected(members ? members[0] : {})
+store.setSearched(searchTerm.value)
 store.setRendered(members ? members.slice(0, maxItemsToLoad) : [])
 
 watch(data, () => {
   const members = typeMember(data.value)
   errorMessage.value = error.value
   store.setMembers(members ? members : [])
-  store.setSelected(members ? members[0] : {})
+  store.setSearched(searchTerm.value)
   store.setRendered(members ? members.slice(0, maxItemsToLoad) : [])
 })
 
+// on search
 watchEffect(() => {
   const term = searchTerm.value.toLowerCase()
   store.setSearched(term)
