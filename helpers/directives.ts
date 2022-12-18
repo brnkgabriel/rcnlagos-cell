@@ -14,6 +14,7 @@ const data: iData = {
   observer: null,
   observation: (entries: IntersectionObserverEntry[]) => {
     const entry = entries[0]
+    console.log("not intersecting")
     if (!entry.isIntersecting) return
     loadMore()
     console.log("intersecting")
@@ -40,7 +41,7 @@ export const vInfiniteScroll = {
     }
   },
   observe: (ele: Element, from: string) => {
-    const options = { threshold: 0.5, root: ele }
+    const options = { threshold: 0.1, root: ele }
     data.observer = new IntersectionObserver(data.observation, options)
     data.observer.observe(data.last as Element)
   },
