@@ -48,7 +48,7 @@ export const useMemberStore = defineStore('memberStore', {
       this.members = this.members.map(member => member.id == id ? updateMember : member)
     },
     setSelected(member: iMember) {
-      this.selected = member
+      this.selected = { ...this.selected, ...member}
     }
   }
 })

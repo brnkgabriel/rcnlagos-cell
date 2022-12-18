@@ -1,5 +1,5 @@
 <template>
-  <div aria-label="membersItem" :class="memberItem" v-lazy-load> 
+  <div aria-label="membersItem" :class="memberItem" v-lazy-load>
     <img
       aria-label="skeleton screen"
       class="w-full"

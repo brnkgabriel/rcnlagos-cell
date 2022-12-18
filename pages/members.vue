@@ -8,8 +8,11 @@
         <div aria-label="text" class="w-full">
           <div :class="mainline_small + ' ' + texttrim">{{memberName(store.selected)}}</div>
           <div :class="subline_small + ' ' + texttrim">{{ store.selected?.occupation }}</div>
+          <div :class="subline_small + ' ' + texttrim" >{{ store.selected?.birthday }}</div>
         </div>
-        <div aria-label="birthday" :class="subline_small" class="text-xxs font-semibold">{{ store.selected?.birthday }}</div>
+        <div aria-label="home address" class="border-y-rcnblue-500 border border-dashed text-xxs font-semibold capitalize w-full">
+          {{ store.selected?.homeAddress }}
+        </div>
         <div aria-label="icons" class="flex justify-between items-center w-full">
           <a :href="constants.whatsappIcon(store.selected)" class="shadow-custom rounded-full">
             <img src="/icons/whatsapp.svg" class="w-[32px]" alt="whatsapp icon" />

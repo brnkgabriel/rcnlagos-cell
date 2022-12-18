@@ -88,3 +88,24 @@ export const search = (term: string, list: iCombined[]) => {
     member.role?.toLowerCase().includes(term)
   })
 }
+
+const replacePattern = (pattern: string, str: string) => {
+  var re = new RegExp(pattern, 'g')
+  return str.replace(re, '-')
+}
+
+export const id = (name: string, delim: string) => {
+  var replaceApostrophe = replacePattern("'", name)
+  var replaceAmpersand = replacePattern('&', replaceApostrophe)
+  var replacePercent = replacePattern('%', replaceAmpersand)
+  return replacePercent.toLowerCase().split(' ').join(delim)
+}
+
+export const getBase64 = (file: File) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}

@@ -21,6 +21,7 @@ export interface iMember {
   email?: string;
   gender?: string;
   imageUrl?: string;
+  imageFile?: string;
   birthday?: string;
   maritalStatus?: string;
   weddingAnniversary?: string;
@@ -60,4 +61,11 @@ export interface iMemberState {
   selected: iMember;
   searched: iMember[];
   searchTerm: string;
+}
+
+export interface iUpload {
+  path: string;
+  name: string;
+  file: string;
+  type: string;
 }

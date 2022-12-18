@@ -14,6 +14,7 @@ export const imgSrc = (url: string) => url ? url : '/icons/avatar.svg'
 
 export const constants = {
   membersApiUrl: "/api/g-members",
+  imageUploadApiUrl: "/api/p-image",
   monthMap: {
     january: 1,
     february: 2,
