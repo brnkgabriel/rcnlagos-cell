@@ -3,25 +3,25 @@
     <div :class="breadcrumb">home &gt;&gt; {{ name }}</div>
     <div aria-label="preview"
       class="shadow-custom rounded-lg bg-white w-full h-[150px] overflow-hidden flex justify-center items-center">
-      <img class="h-[150px]" :src="imgSrc(store.selected?.imageUrl as string)" alt="" />
+      <img class="h-[150px]" :src="imgSrc(selected.imageUrl as string)" alt="" />
       <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
         <div aria-label="text" class="w-full">
-          <div :class="mainline_small + ' ' + texttrim">{{memberName(store.selected)}}</div>
-          <div :class="subline_small + ' ' + texttrim">{{ store.selected?.occupation }}</div>
-          <div :class="subline_small + ' ' + texttrim" >{{ store.selected?.birthday }}</div>
+          <div :class="mainline_small + ' ' + texttrim">{{memberName(selected)}}</div>
+          <div :class="subline_small + ' ' + texttrim">{{ selected.occupation }}</div>
+          <div :class="subline_small + ' ' + texttrim" >{{ selected.birthday }}</div>
         </div>
         <div aria-label="home address" class="border-y-rcnblue-500 border border-dashed text-xxs font-semibold capitalize w-full">
-          {{ store.selected?.homeAddress }}
+          {{ selected.homeAddress }}
         </div>
         <div aria-label="icons" class="flex justify-between items-center w-full">
-          <a :href="constants.whatsappIcon(store.selected)" class="shadow-custom rounded-full">
+          <a :href="constants.whatsappIcon(selected)" class="shadow-custom rounded-full">
             <img src="/icons/whatsapp.svg" class="w-[32px]" alt="whatsapp icon" />
           </a>
-          <a :href="'tel:+234' + phone(store.selected?.phoneNumber)"
+          <a :href="'tel:+234' + phone(selected.phoneNumber)"
             class="shadow-custom rounded-full p-2 bg-rcnblue-500 w-[32px] flex justify-center items-center">
             <Icon type="phonecall" :active="true" class="w-[16px] text-white" />
           </a>
-          <NuxtLink :href="editMemberUrl(store.selected)"
+          <NuxtLink :href="'/member' + editMemberUrl(selected)"
             class="shadow-custom rounded-full p-2 bg-rcnblue-500 w-[32px] flex justify-center items-center">
             <Icon type="edit" :active="true" class="w-[16px] text-white" />
           </NuxtLink>
@@ -32,7 +32,7 @@
       <div aria-label="number" class="mt-[8px] mb-[4px] uppercase" :class="breadcrumb">{{ store.searched.length }} member(s)</div>
       <div v-if="store.rendered" ref="membersRoot" aria-label="membersList"
         class="w-full h-cardlistheight overflow-auto flex flex-wrap gap-2" v-infinite-scroll>
-        <MemberItem v-for="(member, idx) in store.rendered" @click="store.setSelected(member)" :key="idx"
+        <MemberItem v-for="(member, idx) in store.rendered" @click="setSelected(member)" :key="idx"
           :class="position(idx, store.rendered)" :item="member" />
       </div>
     </div>
@@ -52,6 +52,8 @@
 import { iCombined, iMember } from "~~/helpers/interfaces"
 import { vInfiniteScroll } from "~~/helpers/directives";
 import { useMemberStore } from "~~/store/members-store";
+import { Ref } from "vue";
+import { fromLocalStorage, toLocalStorage } from "~~/composables/util";
 
 const { breadcrumb, input, subline_small, mainline_small, texttrim } = useUi()
 const { name } = useRoute()
@@ -65,11 +67,13 @@ const errorMessage = ref(error.value)
 
 const maxItemsToLoad = 10
 const searchTerm = ref("")
+const selected: Ref<iMember> = ref({})
 
 store.setMembers(members ? members : [])
 store.setSearched(searchTerm.value)
 store.setRendered(members ? members.slice(0, maxItemsToLoad) : [])
-  store.setSelected(store.searched ? store.searched[0] : {})
+
+const setSelected = (selection: iMember) => selected.value = selection
 
 watch(data, () => {
   const members = typeMember(data.value)
@@ -77,7 +81,10 @@ watch(data, () => {
   store.setMembers(members ? members : [])
   store.setSearched(searchTerm.value)
   store.setRendered(members ? members.slice(0, maxItemsToLoad) : [])
-  store.setSelected(store.searched ? store.searched[0] : {})
+})
+
+watch(selected, () => {
+  toLocalStorage("selected", selected.value)
 })
 
 // on search
@@ -89,6 +96,7 @@ watchEffect(() => {
 
 onMounted(async () => {
   // await refresh()
+  selected.value = fromLocalStorage("selected", {})
 })
 
 onUpdated(() => {

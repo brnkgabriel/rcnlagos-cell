@@ -1,6 +1,6 @@
 <template>
   <div class="h-full">
-    <div :class="breadcrumb">home &gt;&gt; update &gt;&gt; {{ store.selected.firstName }} {{ store.selected.lastName }}
+    <div :class="breadcrumb">home &gt;&gt; update &gt;&gt; {{ selected.firstName }} {{ selected.lastName }}
     </div>
 
     <form ref="formRef" class="flex justify-center items-center flex-col gap-y-2 h-form overflow-y-auto py-4 pt-[80px]"
@@ -11,36 +11,38 @@
           <Icon type="edit" :active="true" class="text-rcngray-500 w-[12px]" />
         </div>
         <input name="imageFile" id="avatar" type="file" class="hidden" accept="image/*" @change="handleImageUpload" />
-        <img class="rounded-full w-[80px]" :src="imgSrc(store.selected?.imageUrl as string)" :alt="store.selected.firstName" />
+        <img class="rounded-full w-[80px]" :src="imgSrc(selected?.imageUrl as string)" :alt="selected.firstName" />
       </label>
       <input type="text" id="firstName" name="firstName" autocomplete="off" :class="input" placeholder="first name"
-        v-model="store.selected.firstName" />
+        v-model="selected.firstName" />
       <input type="text" id="lastName" name="lastName" autocomplete="off" :class="input" placeholder="last name"
-        v-model="store.selected.lastName" />
+        v-model="selected.lastName" />
       <input type="email" id="email" name="email" autocomplete="off" :class="input" placeholder="email"
-        v-model="store.selected.email" />
+        v-model="selected.email" />
       <input type="number" id="phoneNumber" name="phoneNumber" autocomplete="off" :class="input" placeholder="email"
-        v-model="store.selected.phoneNumber" />
+        v-model="selected.phoneNumber" />
       <input type="text" id="homeAddress" name="homeAddress" autocomplete="off" :class="input"
-        placeholder="home address" v-model="store.selected.homeAddress" />
+        placeholder="home address" v-model="selected.homeAddress" />
       <input type="text" id="occupation" name="occupation" autocomplete="off" :class="input" placeholder="occupation"
-        v-model="store.selected.occupation" />
+        v-model="selected.occupation" />
       <SwitchComponent left="male" right="female" :value="handleGender" name="gender" />
       <input type="text" id="birthday" name="birthday" autocomplete="off" :class="input" placeholder="birthday"
-        v-model="store.selected.birthday" />
+        v-model="selected.birthday" />
       <input type="text" id="weddingAnniversary" name="weddingAnniversary" autocomplete="off" :class="input"
-        placeholder="weddingAnniversary" v-model="store.selected.weddingAnniversary" />
+        placeholder="weddingAnniversary" v-model="selected.weddingAnniversary" />
       <button type="submit" :class="button" @click="handleSubmit">submit</button>
     </form>
   </div>
 </template>
 <script setup lang="ts">
 import { useMemberStore } from "~~/store/members-store"
-import { iUpload } from "~~/helpers/interfaces"
+import { iMember, iUpload } from "~~/helpers/interfaces"
+import { Ref } from "vue";
 
 const { breadcrumb, input, button } = useUi()
 const formRef = ref()
 const store = useMemberStore()
+const selected:Ref<iMember> = ref({})
 
 const handleGender = (value: string) => {
   console.log("from update page, gender is", value)
@@ -53,13 +55,13 @@ const handleImageUpload = async (evt: Event) => {
     const fileObj = target.files[0]
 
     const upload: iUpload = {
-      path: id(memberName(store.selected), '-'),
+      path: id(memberName(selected.value), '-'),
       name: fileObj.name,
       file: await getBase64(fileObj) as string,
       type: fileObj.type
     }
 
-    store.selected.imageUrl = await getBase64(fileObj) as string
+    selected.value.imageUrl = await getBase64(fileObj) as string
 
     console.log("data from client", upload)
     try {
@@ -85,7 +87,8 @@ const handleSubmit = (evt: Event) => {
 
 
 onMounted(() => {
-
+  const dataIfNull = store.rendered[0]
+  selected.value = fromLocalStorage("selected", dataIfNull)
 })
 
 definePageMeta({

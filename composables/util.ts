@@ -112,7 +112,9 @@ export const getBase64 = (file: File) => {
   });
 }
 
-export const getLocalStorage = (key: string, json: object) => {
+export const fromLocalStorage = (key: string, json: any) => {
   const localStateStr = localStorage.getItem(key)
   return localStateStr ? JSON.parse(localStateStr) : json
 }
+
+export const toLocalStorage = (key: string, data: any) => localStorage.setItem(key, JSON.stringify(data))
