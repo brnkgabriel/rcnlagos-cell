@@ -11,7 +11,7 @@
           <Icon type="edit" :active="true" class="text-rcngray-500 w-[12px]" />
         </div>
         <input name="imageFile" id="avatar" type="file" class="hidden" accept="image/*" @change="handleImageUpload" />
-        <img class="rounded-full w-[80px]" :src="store.selected.imageUrl" :alt="store.selected.firstName" />
+        <img class="rounded-full w-[80px]" :src="imgSrc(store.selected?.imageUrl as string)" :alt="store.selected.firstName" />
       </label>
       <input type="text" id="firstName" name="firstName" autocomplete="off" :class="input" placeholder="first name"
         v-model="store.selected.firstName" />
@@ -58,6 +58,8 @@ const handleImageUpload = async (evt: Event) => {
       file: await getBase64(fileObj) as string,
       type: fileObj.type
     }
+
+    store.selected.imageUrl = await getBase64(fileObj) as string
 
     console.log("data from client", upload)
     try {

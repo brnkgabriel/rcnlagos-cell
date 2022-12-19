@@ -55,7 +55,7 @@ import { useMemberStore } from "~~/store/members-store";
 
 const { breadcrumb, input, subline_small, mainline_small, texttrim } = useUi()
 const { name } = useRoute()
-const { data, error } = await useLazyFetch(() => constants.membersApiUrl)
+const { data, error, refresh } = await useLazyFetch(() => constants.membersApiUrl)
 
 const store = useMemberStore()
 
@@ -69,6 +69,7 @@ const searchTerm = ref("")
 store.setMembers(members ? members : [])
 store.setSearched(searchTerm.value)
 store.setRendered(members ? members.slice(0, maxItemsToLoad) : [])
+  store.setSelected(store.searched ? store.searched[0] : {})
 
 watch(data, () => {
   const members = typeMember(data.value)
@@ -76,6 +77,7 @@ watch(data, () => {
   store.setMembers(members ? members : [])
   store.setSearched(searchTerm.value)
   store.setRendered(members ? members.slice(0, maxItemsToLoad) : [])
+  store.setSelected(store.searched ? store.searched[0] : {})
 })
 
 // on search
@@ -85,9 +87,8 @@ watchEffect(() => {
   store.setRendered(store.searched.slice(0, maxItemsToLoad))
 })
 
-onMounted(() => {
+onMounted(async () => {
   // await refresh()
-  // observer.start() 
 })
 
 onUpdated(() => {

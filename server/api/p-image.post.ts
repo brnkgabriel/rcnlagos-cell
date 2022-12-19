@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
 
     return {
       data: response.data,
-      error: response.error?.message,
+      error: response.error?.message
     }
   } catch (error: any) {
     return { error: error.message }

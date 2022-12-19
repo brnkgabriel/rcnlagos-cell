@@ -111,3 +111,8 @@ export const getBase64 = (file: File) => {
     reader.onerror = error => reject(error);
   });
 }
+
+export const getLocalStorage = (key: string, json: object) => {
+  const localStateStr = localStorage.getItem(key)
+  return localStateStr ? JSON.parse(localStateStr) : json
+}

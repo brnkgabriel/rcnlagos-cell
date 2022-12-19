@@ -1,11 +1,5 @@
 <template>
-  <div aria-label="membersItem" :class="memberItem" v-lazy-load>
-    <img
-      aria-label="skeleton screen"
-      class="w-full"
-      v-show="!loaded && imageExists()"
-      src="/icons/avatar.svg"
-      :alt="props.item.firstName"/>
+  <div aria-label="membersItem" :class="memberItem">
     <img
       aria-label="actual image"
       class="w-full"
@@ -24,7 +18,6 @@
 </template>
 <script setup lang="ts">
 import { iMember } from "~~/helpers/interfaces"
-import { vLazyLoad } from "~~/helpers/directives"
 
 const name = computed(() => `${props.item.firstName} ${props.item.lastName}`)
 
