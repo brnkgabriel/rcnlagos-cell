@@ -10,7 +10,7 @@
     <div aria-label="details" class="p-2">
       <div aria-label="name" :class="mainline_small + ' ' + texttrim">{{name}}</div>
       <div aria-label="occupation" :class="subline_small" class="flex gap-x-1">
-        <Icon type="occupation" :class="memberItemOccupationIcon" :active="false" />
+        <Icon type="occupation" :class="memberItemOccupationIcon" :active="true" />
         <div :class="texttrim">{{props.item.occupation}}</div>
       </div>
     </div>

@@ -2,7 +2,7 @@
   <div class="flex flex-col items-start justify-between h-full">
     <div :class="breadcrumb">home &gt;&gt; {{ name }}</div>
     <div aria-label="preview"
-      class="bg-white rounded-lg w-full h-[150px] overflow-hidden flex justify-center items-center">
+      class="shadow-custom bg-white rounded-lg w-full h-[150px] overflow-hidden flex justify-center items-center">
       <img class="h-[150px]" :src="imgSrc(selected.imageUrl as string)" alt="" />
       <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
         <div aria-label="text" class="w-full">
