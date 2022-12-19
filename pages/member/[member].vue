@@ -53,25 +53,24 @@ const handleImageUpload = async (evt: Event) => {
   if (target.files) {
 
     const fileObj = target.files[0]
+    const file = await getBase64(fileObj) as string
 
     const upload: iUpload = {
       path: id(memberName(selected.value), '-'),
       name: fileObj.name,
-      file: await getBase64(fileObj) as string,
-      type: fileObj.type
+      file, type: fileObj.type
     }
 
-    selected.value.imageUrl = await getBase64(fileObj) as string
+    selected.value.imageUrl = file
 
     console.log("data from client", upload)
     try {
-
-      const { data, error } = await useFetch(constants.imageUploadApiUrl, {
+      const fetchOptions = {
         headers: { "Content-type": "multipart/form-data" },
         method: 'POST',
         body: upload
-      })
-
+      }
+      const { data } = await useFetch(constants.imageUploadApiUrl, fetchOptions)
       console.log("data from server", data.value)
     } catch (error) {
       console.log(error)

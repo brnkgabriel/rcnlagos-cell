@@ -38,7 +38,9 @@ module.exports = {
         'xxxs': '8px'
       },
       boxShadow: {
-        "custom": "0 2px 5px 0 rgb(0 0 0 / 5%)"
+        "custom": "0 2px 5px 0 rgb(0 0 0 / 5%)",
+        "inset": "inset 0 2px 5px 0 rgb(0 0 0 / 5%)",
+        "cta": "0 2px 4px 0 rgb(0 0 0 / 20%)"
       },
       width: {
         'details': 'calc(100% - 150px)',

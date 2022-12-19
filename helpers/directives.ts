@@ -38,7 +38,7 @@ export const vInfiniteScroll = {
     const options = { threshold: 0.1, root: ele }
     data.observer = new IntersectionObserver(data.observation, options)
     const last = el('.last', ele as HTMLElement)  
-    data.observer.observe(last as Element)
+    if (last) data.observer.observe(last as Element)
     console.log("mounted")
   },
   unmounted: (ele: Element) => {

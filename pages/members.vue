@@ -2,7 +2,7 @@
   <div class="flex flex-col items-start justify-between h-full">
     <div :class="breadcrumb">home &gt;&gt; {{ name }}</div>
     <div aria-label="preview"
-      class="shadow-custom rounded-lg bg-white w-full h-[150px] overflow-hidden flex justify-center items-center">
+      class="bg-white rounded-lg w-full h-[150px] overflow-hidden flex justify-center items-center">
       <img class="h-[150px]" :src="imgSrc(selected.imageUrl as string)" alt="" />
       <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
         <div aria-label="text" class="w-full">
@@ -10,19 +10,19 @@
           <div :class="subline_small + ' ' + texttrim">{{ selected.occupation }}</div>
           <div :class="subline_small + ' ' + texttrim" >{{ selected.birthday }}</div>
         </div>
-        <div aria-label="home address" class="border-y-rcnblue-500 border border-dashed text-xxs font-semibold capitalize w-full">
+        <div aria-label="home address" class="text-xxs font-semibold capitalize w-full">
           {{ selected.homeAddress }}
         </div>
-        <div aria-label="icons" class="flex justify-between items-center w-full">
-          <a :href="constants.whatsappIcon(selected)" class="shadow-custom rounded-full">
+        <div aria-label="icons" class="flex justify-start gap-x-4 sm:gap-x-0 sm:justify-between items-center w-full">
+          <a :href="constants.whatsappIcon(selected)" class="shadow-cta rounded-full">
             <img src="/icons/whatsapp.svg" class="w-[32px]" alt="whatsapp icon" />
           </a>
           <a :href="'tel:+234' + phone(selected.phoneNumber)"
-            class="shadow-custom rounded-full p-2 bg-rcnblue-500 w-[32px] flex justify-center items-center">
+            class="shadow-cta rounded-full p-2 bg-rcnorange-500 w-[32px] flex justify-center items-center">
             <Icon type="phonecall" :active="true" class="w-[16px] text-white" />
           </a>
           <NuxtLink :href="'/member' + editMemberUrl(selected)"
-            class="shadow-custom rounded-full p-2 bg-rcnblue-500 w-[32px] flex justify-center items-center">
+            class="shadow-cta rounded-full p-2 bg-rcnred-500 w-[32px] flex justify-center items-center">
             <Icon type="edit" :active="true" class="w-[16px] text-white" />
           </NuxtLink>
         </div>
