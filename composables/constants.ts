@@ -3,9 +3,10 @@ import { iMember } from "~~/helpers/interfaces";
 export const phone = (number: any) => {
   if (!number) return ""
   switch (number[0]) {
-    case "0": return number.slice(1, number.length)
-    case "2": return number.slice(3, number.length)
-    case "+": return number.slice(4, number.length)
+    case "0": return "+234" + number.slice(1, number.length)
+    case "1": return "+1" + number.slice(1, number.length)
+    case "2": return "+234" + number.slice(3, number.length)
+    case "+": return number[1] === "2" ? "+234" + number.slice(4, number.length) : "+1" + number.slice(4, number.length)
     default: return number
   }
 }
@@ -56,9 +57,10 @@ export const constants = {
   horizontal: 'horizontal',
   div: 'div',
   whatsappIcon: (member: iMember | null) => {
-    let number = member ? member?.phoneNumber : "234"
+    let number = member ? member?.phoneNumber : "0"
     // @ts-ignore
-    number = "234" + phone(number)
+    const num = phone(number)
+    number = num.slice(1, num.length)
     const prefix = member?.gender === 'male' ? "Bro. " : "Sis. "
 
     return `https://api.whatsapp.com/send?phone=${number}&text=Hello%20${prefix}${member?.firstName}`

@@ -17,13 +17,13 @@
           <a :href="constants.whatsappIcon(selected)" class="shadow-cta rounded-full">
             <img src="/icons/whatsapp.svg" class="w-[32px]" alt="whatsapp icon" />
           </a>
-          <a :href="'tel:+234' + phone(selected.phoneNumber)"
+          <a :href="'tel:' + phone(selected.phoneNumber)"
             class="shadow-cta rounded-full p-2 bg-rcnorange-500 w-[32px] flex justify-center items-center">
             <Icon type="phonecall" :active="true" class="w-[16px] text-white" />
           </a>
           <NuxtLink :href="'/member' + editMemberUrl(selected)"
-            class="shadow-cta rounded-full p-2 bg-rcnred-500 w-[32px] flex justify-center items-center">
-            <Icon type="edit" :active="true" class="w-[16px] text-white" />
+            class="shadow-cta rounded-full p-2 bg-rcngray-700 w-[32px] flex justify-center items-center">
+            <Icon type="edit" :active="true" class="w-[16px] text-rcngray-900" />
           </NuxtLink>
         </div>
       </div>
