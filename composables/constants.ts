@@ -1,16 +1,5 @@
 import { iMember } from "~~/helpers/interfaces";
 
-export const phone = (number: any) => {
-  if (!number) return ""
-  switch (number[0]) {
-    case "0": return "+234" + number.slice(1, number.length)
-    case "1": return "+1" + number.slice(1, number.length)
-    case "2": return "+234" + number.slice(3, number.length)
-    case "+": return number[1] === "2" ? "+234" + number.slice(4, number.length) : "+1" + number.slice(4, number.length)
-    default: return number
-  }
-}
-
 export const constants = {
   membersApiUrl: "/api/g-members",
   imageUploadApiUrl: "/api/p-image",
