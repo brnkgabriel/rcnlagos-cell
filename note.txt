@@ -43,4 +43,6 @@ todo: ensure we find where to update the values of useState
     },
 
 
-todo: make the register component only 1 and show based on if accessible or not
+- image cropper sources:
+  - https://cropper.chengpeiquan.com/quick-start.html
+  - https://github.com/chengpeiquan/vue-picture-cropper/blob/main/docs/components/WithCompositionAPI.vue

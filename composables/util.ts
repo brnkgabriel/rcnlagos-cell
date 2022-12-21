@@ -123,7 +123,7 @@ export const phone = (number: any) => {
   }
 }
 
-export const fromLocalStorage = (key: string, json: any) => {
+export const fromLocalStorage = (key: string, json?: any) => {
   const localStateStr = localStorage.getItem(key)
   return localStateStr ? JSON.parse(localStateStr) : json
 }
