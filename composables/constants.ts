@@ -40,6 +40,7 @@ export const constants = {
   occupation: 'occupation',
   phonecall: 'phonecall',
   edit: 'edit',
+  search: 'search',
   membersItem: 'membersItem',
   membersList: 'membersList',
   vertical: 'vertical',

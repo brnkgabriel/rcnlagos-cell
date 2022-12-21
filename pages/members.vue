@@ -1,12 +1,5 @@
 <template>
-  <Suspense>
-    <template #default>
-      <MembersComponent />
-    </template>
-    <template #fallback>
-      loading...
-    </template>
-  </Suspense>
+  <MembersComponent />
 </template>
 <script setup lang="ts">
   

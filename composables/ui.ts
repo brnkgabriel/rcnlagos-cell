@@ -23,6 +23,8 @@ export const useUi = () => {
     input: "bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-rcnblue-500 focus:border-rcnblue-500 block w-full h-[42px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-rcnblue-500 dark:focus:border-rcnblue-500",
     memberItem: "flex flex-col basis-[100px] flex-grow w-1/2 sm:w-1/4 overflow-hidden rounded-md shadow-custom bg-white cursor-pointer",
     memberItemOccupationIcon: "w-[16px] h-[16px]",
+    search: "absolute w-[32px] h-[32px] right-[4px] top-1/2 -translate-y-1/2 bg-rcnblue-500 rounded-md flex justify-center items-center cursor-pointer",
+    searchIcon: "w-[24px] h-[24px] text-white"
   }
 }
 

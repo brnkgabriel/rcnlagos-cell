@@ -20,7 +20,8 @@ import {
   CalendarDaysIcon as EventsIconSolid,
   WrenchScrewdriverIcon as OccupationIconSolid,
   PhoneArrowUpRightIcon as PhonecallIconSolid,
-  PencilIcon as EditIconSolid
+  PencilIcon as EditIconSolid,
+  MagnifyingGlassIcon as SearchIcon
 } from "@heroicons/vue/24/solid/index"
 
 const comp = computed(() => {
@@ -51,6 +52,9 @@ const comp = computed(() => {
     case constants.home:
       icon = props.active ? HomeIconSolid : HomeIconOutline
       break;
+    case constants.search:
+      icon = SearchIcon
+      break;
     default:
       break;
   }
@@ -58,7 +62,7 @@ const comp = computed(() => {
 })
 
 const props = defineProps<{
-  active: boolean
+  active?: boolean
   type?: string
 }>()
 </script>

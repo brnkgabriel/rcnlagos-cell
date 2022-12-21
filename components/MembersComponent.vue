@@ -32,7 +32,7 @@
         <div aria-label="number" class="mt-[8px] mb-[4px] uppercase" :class="breadcrumb">{{ store.searched.length }} member(s)</div>
         <div v-if="store.rendered" ref="membersRoot" aria-label="membersList"
           class="w-full h-cardlistheight overflow-auto flex flex-wrap gap-2" v-infinite-scroll>
-          
+          <div :class="mainline_small" v-if="store.rendered.length == 0">No result found for {{searchTerm}} :(</div>
           <MemberItem
             v-for="(member, idx) in store.rendered"
             @click="setSelected(member)"
@@ -41,34 +41,36 @@
             :item="member" />
         </div>
       </div>
-      <div aria-label="search" class="h-[40px] w-full">
+      <div aria-label="search" class="h-[40px] w-full relative">
         <input
           type="text"
           id="search"
           name="search"
           autocomplete="off"
           :class="input"
+          class="pr-[40px]"
           :placeholder="placeholder"
           v-model="searchTerm"/>
+        <div :class="search" @click="handleSearch">
+          <Icon type="search" :class="searchIcon" />
+        </div>
       </div>
     </div>
   </template>
   <script setup lang="ts">
-  import { iCombined, iMember } from "~~/helpers/interfaces"
+  import { iMember } from "~~/helpers/interfaces"
   import { vInfiniteScroll } from "~~/helpers/directives";
   import { useMemberStore } from "~~/store/members-store";
   import { Ref } from "vue";
   import { fromLocalStorage, toLocalStorage } from "~~/composables/util";
-  import MemberItemSkeleton from "./skeletons/MemberItemSkeleton.vue";
   
-  const { breadcrumb, input, subline_small, mainline_small, texttrim } = useUi()
+  const { breadcrumb, input, subline_small, mainline_small, texttrim, search, searchIcon } = useUi()
   const { name } = useRoute()
   const { data, error } = await useLazyFetch(() => constants.membersApiUrl)
   
   const store = useMemberStore()
   
-  const members: iMember[] | null = typeMember(data.value)
-  const skeletonCount = ref(4)
+  const members: iMember[] | null = typeMember(data.value) 
   const placeholder = computed(() => `Search for ${name as string} ...`)
   const errorMessage = ref(error.value)
   
@@ -77,17 +79,22 @@
   const selected: Ref<iMember> = ref({})
   
   store.setMembers(members ? members : [])
-  store.setSearched(searchTerm.value)
+  store.setSearched("")
   store.setRendered(members ? members.slice(0, maxItemsToLoad) : [])
   
   const setSelected = (selection: iMember) => selected.value = selection
+
+  const handleSearch = () => {
+    store.setSearched(searchTerm.value.toLowerCase())
+    store.setRendered(store.searched.slice(0, maxItemsToLoad))
+  }
   
   watch(data, () => {
     const members = typeMember(data.value)
     errorMessage.value = error.value
     store.setMembers(members ? members : [])
-    store.setSearched(searchTerm.value)
-    store.setRendered(members ? members.slice(0, maxItemsToLoad) : [])
+    store.setSearched("")
+    store.setRendered(store.searched.slice(0, maxItemsToLoad))
   })
   
   watch(selected, () => {
