@@ -3,7 +3,7 @@
     <div :class="breadcrumb">home &gt;&gt; update &gt;&gt; {{ selected.firstName }} {{ selected.lastName }}
     </div>
 
-    <form ref="formRef" class="flex justify-center items-center flex-col gap-y-1 h-form overflow-y-auto py-4"
+    <form ref="formRef" class="flex justify-center items-center flex-col gap-y-1 h-form overflow-y-auto py-2"
       @submit.prevent>
       <label for="avatar" class="relative cursor-pointer">
         <div aria-label="icon-wrap"
@@ -11,7 +11,7 @@
           <Icon type="edit" :active="true" class="text-rcngray-900 w-[12px]" />
         </div>
         <input name="imageFile" id="avatar" type="file" class="hidden" accept="image/*" @change="toCropImage" />
-        <img class="rounded-full w-[60px]" :src="imgSrc(selected?.imageUrl as string)" :alt="selected.firstName" />
+        <img class="rounded-full w-[80px]" :src="imgSrc(selected?.imageUrl as string)" :alt="selected.firstName" />
       </label>
       <input type="text" id="firstName" name="firstName" autocomplete="off" :class="input" placeholder="first name"
         v-model="selected.firstName" />
