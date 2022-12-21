@@ -3,11 +3,11 @@
   <div aria-label="membersItem" :class="memberItem">
     <img
       aria-label="actual image"
-      class="w-full" loading="lazy"
+      class="w-full object-cover min-h-[116px] opacity-0" :class="{loaded}" loading="lazy"
       @load="handleLoad"
       :src="imgSrc(props.item.imageUrl as string)"
       :alt="props.item.firstName" />
-    <img v-if="!loaded" aria-label="actual image" class="w-full" loading="lazy" src="/icons/image-placeholder.svg" alt="skeleton" />
+    <!-- <img v-if="!loaded" aria-label="actual image" class="w-full" loading="lazy" src="/icons/image-placeholder.svg" alt="skeleton" /> -->
     <div aria-label="details" class="p-2">
       <div aria-label="name" :class="mainline_small + ' ' + texttrim">{{ name }}</div>
       <div aria-label="occupation" :class="subline_small" class="flex gap-x-1">

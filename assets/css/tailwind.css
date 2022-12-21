@@ -12,3 +12,8 @@ html, body, #__nuxt {
 body {
   background-color: #f5f5f5;
 }
+
+.loaded {
+  opacity: 1 !important;
+  transition: opacity .2s linear;
+}
