@@ -3,7 +3,7 @@
     <div :class="breadcrumb">home &gt;&gt; update &gt;&gt; {{ selected.firstName }} {{ selected.lastName }}
     </div>
 
-    <form ref="formRef" class="flex justify-center items-center flex-col gap-y-1 h-form overflow-y-auto py-2"
+    <form ref="formRef" class="flex justify-center items-center flex-col gap-y-1 h-form overflow-y-auto"
       @submit.prevent>
       <label for="avatar" class="relative cursor-pointer">
         <div aria-label="icon-wrap"
