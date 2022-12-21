@@ -13,22 +13,22 @@
         <input name="imageFile" id="avatar" type="file" class="hidden" accept="image/*" @change="toCropImage" />
         <img class="rounded-full w-[80px]" :src="imgSrc(selected?.imageUrl as string)" :alt="selected.firstName" />
       </label>
-      <input type="text" id="firstName" name="firstName" autocomplete="off" :class="input" placeholder="first name"
+      <input type="text" id="firstName" name="firstName" autocomplete="off" :class="input" placeholder="First name"
         v-model="selected.firstName" />
-      <input type="text" id="lastName" name="lastName" autocomplete="off" :class="input" placeholder="last name"
+      <input type="text" id="lastName" name="lastName" autocomplete="off" :class="input" placeholder="Last name"
         v-model="selected.lastName" />
-      <input type="email" id="email" name="email" autocomplete="off" :class="input" placeholder="email"
+      <input type="email" id="email" name="email" autocomplete="off" :class="input" placeholder="Email"
         v-model="selected.email" />
-      <input type="number" id="phoneNumber" name="phoneNumber" autocomplete="off" :class="input" placeholder="email"
+      <input type="number" id="phoneNumber" name="phoneNumber" autocomplete="off" :class="input" placeholder="Email"
         v-model="selected.phoneNumber" />
       <input type="text" id="homeAddress" name="homeAddress" autocomplete="off" :class="input"
         placeholder="home address" v-model="selected.homeAddress" />
-      <input type="text" id="occupation" name="occupation" autocomplete="off" :class="input" placeholder="occupation"
+      <input type="text" id="occupation" name="occupation" autocomplete="off" :class="input" placeholder="Occupation"
         v-model="selected.occupation" />
-      <input type="text" id="birthday" name="birthday" autocomplete="off" :class="input" placeholder="birthday"
+      <input type="text" id="birthday" name="birthday" autocomplete="off" :class="input" placeholder="Birthday"
         v-model="selected.birthday" />
       <input type="text" id="weddingAnniversary" name="weddingAnniversary" autocomplete="off" :class="input"
-        placeholder="weddingAnniversary" v-model="selected.weddingAnniversary" />
+        placeholder="Wedding anniversary" v-model="selected.weddingAnniversary" />
       <SwitchComponent left="male" right="female" :value="handleGender" name="gender" :class="subline" />
       <button type="submit" :class="button" @click="handleSubmit">submit</button>
     </form>
