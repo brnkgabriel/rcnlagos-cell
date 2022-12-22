@@ -3,7 +3,7 @@
       <div :class="breadcrumb">home &gt;&gt; {{ name }}</div>
       <div aria-label="preview"
         class="shadow-custom bg-white rounded-lg w-full h-[150px] overflow-hidden flex justify-center items-center">
-        <img class="h-[150px]" :src="imgSrc(selected.imageUrl as string)" alt="" />
+        <img class="h-[150px] w-[150px] opacity-0" v-loaded :src="imgSrc(selected.imageUrl as string)" alt="" />
         <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
           <div aria-label="text" class="w-full">
             <div :class="mainline_small + ' ' + texttrim">{{memberName(selected)}}</div>
@@ -59,7 +59,7 @@
   </template>
   <script setup lang="ts">
   import { iMember } from "~~/helpers/interfaces"
-  import { vInfiniteScroll } from "~~/helpers/directives";
+  import { vInfiniteScroll, vLoaded } from "~~/helpers/directives";
   import { useMemberStore } from "~~/store/members-store";
   import { Ref } from "vue";
   import { fromLocalStorage, toLocalStorage } from "~~/composables/util";

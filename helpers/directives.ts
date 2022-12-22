@@ -47,3 +47,13 @@ export const vInfiniteScroll = {
     data.observer = null
   }
 }
+
+const loaded = (ele: Element) => {
+  const img = ele as HTMLImageElement
+  img.onload = () => img.classList.add("loaded")
+}
+
+export const vLoaded = {
+  mounted: (ele: Element) => loaded(ele),
+  updated: (ele: Element) => loaded(ele)
+}
