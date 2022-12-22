@@ -1,13 +1,13 @@
 <template>
-  <MembersComponent />
+  <Login />
 </template>
 <script setup lang="ts">
-  
+
 definePageMeta({
-  layout: "catalog",
-  middleware: "logged-out"
+  layout: "home",
+  middleware: "logged-in"
 });
 </script>
 <style lang="">
-  
-</style>
+    
+  </style>

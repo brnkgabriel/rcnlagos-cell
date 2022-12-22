@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@kevinmarrec/nuxt-pwa',
     '@pinia/nuxt',
     '@nuxt/image-edge',
+    '@nuxtjs/supabase'
   ],
   pwa: {
     workbox: {
