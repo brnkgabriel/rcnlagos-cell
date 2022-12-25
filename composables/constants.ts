@@ -41,10 +41,13 @@ export const constants = {
   phonecall: 'phonecall',
   edit: 'edit',
   search: 'search',
+  signout: 'signout',
   membersItem: 'membersItem',
   membersList: 'membersList',
   vertical: 'vertical',
   horizontal: 'horizontal',
+  registered: 'registered',
+  anonymous: 'anonymous',
   div: 'div',
   whatsappIcon: (member: iMember | null) => {
     let number = member ? member?.phoneNumber : "0"

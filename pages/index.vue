@@ -29,5 +29,6 @@ const { mainline_small, subline_small, homeNavLink, mainline } = useUi()
 const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat;background-position:center;background-size:cover`)
 definePageMeta({
   layout: "home",
+  // middleware: "home"
 });
 </script>

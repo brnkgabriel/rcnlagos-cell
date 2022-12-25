@@ -15,7 +15,7 @@ export const useUi = () => {
     grayText,
     breadcrumb: grayText + " uppercase mb-1 " + tiny,
     logo: flexCenterCenter + " bg-white shadow-custom absolute top-[40%] left-[16px] w-[50px] h-[50px] rounded-full p-2 z-10 -translate-y-1/2",
-    bottomNavLink: flexCenterCenter + " flex-col",
+    bottomNavLink: flexCenterCenter + " flex-col cursor-pointer",
     bottomNavLinkIcon: flexCenterCenter + " w-[32px] h-[32px]",
     homeNavLink: "rounded-full bg-white shadow-custom p-3 w-[250px] text-center cursor-pointer text-rcnblue-500 border-2 text-xs",
     button: "rounded-full bg-rcnblue-500 shadow-custom p-3 w-full text-center cursor-pointer text-white border-2 text-xs uppercase",

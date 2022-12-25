@@ -1,46 +1,44 @@
 <template>
   <div class="flex justify-center items-center gap-x-8 bg-white">
     <NuxtLink
-      href="/"
-      :class="bottomNavLink">
-      <div :class="bottomNavLinkIcon">
-        <Icon type="home" class="w-[24px] h-[24px]" :active="route.name === 'home'" />
-      </div>
-      <div class="capitalize" :class="subline_small + ' ' + color('home')">home</div>
-    </NuxtLink>
-    <NuxtLink
       href="/meetings"
       :class="bottomNavLink">
       <div :class="bottomNavLinkIcon">
-        <Icon type="meetings" class="w-[24px] h-[24px]" :active="route.name === 'meetings'" />
+        <Icon :type="constants.meetings" class="w-[24px] h-[24px]" :active="route.name === constants.meetings" />
       </div>
-      <div class="capitalize" :class="subline_small + ' ' + color('meetings')">meetings</div>
+      <div class="capitalize" :class="subline_small + ' ' + color(constants.meetings)">meetings</div>
     </NuxtLink>
     <NuxtLink
       href="/members"
       :class="bottomNavLink">
       <div :class="bottomNavLinkIcon">
-        <Icon type="members" class="w-[24px] h-[24px]" :active="route.name === 'members'" />
+        <Icon :type="constants.members" class="w-[24px] h-[24px]" :active="route.name === constants.members" />
       </div>
-      <div class="capitalize" :class="subline_small + ' ' + color('members')">members</div>
+      <div class="capitalize" :class="subline_small + ' ' + color(constants.members)">members</div>
     </NuxtLink>
-    <!-- <NuxtLink
-      href="/settings"
+    <div
+      @click="signOut"
       :class="bottomNavLink">
       <div :class="bottomNavLinkIcon">
-        <Icon type="settings" class="w-[24px] h-[24px]" :active="route.name === 'settings'" />
+        <Icon :type="constants.signout" class="w-[24px] h-[24px]" />
       </div>
-      <div class="capitalize" :class="subline_small + ' ' + color('settings')">settings</div>
-    </NuxtLink> -->
+      <div class="capitalize" :class="subline_small + ' ' + color(constants.signout)">signout</div>
+    </div> 
   </div>
 </template>
 <script setup lang="ts">
 
+// data / var
 const { subline_small, bottomNavLink, bottomNavLinkIcon } = useUi()
-
 const route = useRoute()
+const supabase = useSupabaseClient()
 
+// functions
 const color = (type: string) => route.name === type ? `text-rcnblue-500` : `text-rcngray-900`
+const signOut = async () => {
+  await supabase.auth.signOut()
+  location.href = "/"
+}
 </script>
 <style lang="">
     

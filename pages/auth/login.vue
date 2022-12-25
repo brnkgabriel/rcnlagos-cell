@@ -5,7 +5,6 @@
 
 definePageMeta({
   layout: "home",
-  middleware: "logged-in"
 });
 </script>
 <style lang="">

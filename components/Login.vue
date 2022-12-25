@@ -24,7 +24,9 @@ const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat
 
 const { mainline, subline_small, homeNavLink } = useUi()
 
-const signIn = () => {
-  client.auth.signInWithOAuth({ provider: "google" })
+const signIn = async () => {
+  const cred = await client.auth.signInWithOAuth({ provider: "google" })
+  console.log("cred is", cred)
+  
 }
 </script>

@@ -5,9 +5,6 @@
   
 definePageMeta({
   layout: "catalog",
-  middleware: "logged-out"
+  middleware: "auth"
 });
 </script>
-<style lang="">
-  
-</style>

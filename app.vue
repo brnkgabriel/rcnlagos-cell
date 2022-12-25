@@ -4,22 +4,44 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
+import authStore from "~~/store/index"
 import { useMemberStore } from "~~/store/members-store"
 import { fromLocalStorage, toLocalStorage } from "./composables/util";
 
 const store = useMemberStore()
 const user = useSupabaseUser()
+const supabase = useSupabaseClient()
+const router = useRoute()
 
 watch(store, () => {
   toLocalStorage("memberState", store.$state)
 }, { deep: true })
 
+// const createCookie = async (email: string | undefined) => {
+//   const userCookie = useCookie("user", { maxAge: 60 * 60 * 8 })
+  
+//   try {
+    
+//     let { data } = await supabase
+//     .from("members")
+//     .select("*")
+//     .eq("email", email)
+//     // @ts-ignore
+//     userCookie.value = data?.values.length > 0 ? constants.registered : constants.anonymous
+//     return userCookie.value
+//   } catch (error) {
+//     console.log("error", error)
+//     return null
+//   }
+// }
+
+supabase.auth.onAuthStateChange((_, session) => {
+  if (!session?.user) navigateTo("/login")
+  authStore.methods.setUser(session)
+})
+
 watchEffect(() => {
-  if (user.value) {
-    const userCookie = useCookie("user", { maxAge: 60 * 60 * 8 })
-    userCookie.value = user.value.email as string
-  }
-  console.log("user", user.value)
+  // if (!user.value) navigateTo("/login")
 })
 
 onMounted(() => {

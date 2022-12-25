@@ -10,7 +10,8 @@ import {
   CalendarDaysIcon as EventsIconOutline,
   WrenchScrewdriverIcon as OccupationIconOutline,
   PhoneArrowUpRightIcon as PhonecallIconOutline,
-  PencilIcon as EditIconOutline  
+  PencilIcon as EditIconOutline,
+  PowerIcon as SignoutIcon
 } from "@heroicons/vue/24/outline/index"
 import {
   HomeModernIcon as HomeIconSolid,
@@ -54,6 +55,9 @@ const comp = computed(() => {
       break;
     case constants.search:
       icon = SearchIcon
+      break;
+    case constants.signout:
+      icon = SignoutIcon
       break;
     default:
       break;
