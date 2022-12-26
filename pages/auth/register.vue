@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <Register />
-  </div>
+  <Register />
 </template>
 <script setup lang="ts">
 

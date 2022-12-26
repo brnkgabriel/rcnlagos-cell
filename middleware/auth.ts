@@ -1,12 +1,10 @@
-import authStore from "~~/store/index"
-
+import { useMemberStore } from "~~/store/members-store"
 export default defineNuxtRouteMiddleware((to, from) => {
-  if (!authStore.state.value.user) {
+  const store = useMemberStore()
+  
+  if (!store.user) {
     return navigateTo({
-      path: "/auth/login",
-      query: {
-        redirect: to.path
-      }
+      path: `/auth/login?redirect=${to.path}`,
     })
   }
 })

@@ -2,17 +2,18 @@ import { defineStore } from "pinia"
 import { reorder, search } from "../composables/util";
 import { iCombined, iMember } from "../helpers/interfaces"
 import { constants } from "../composables/constants"
+import { Session, User } from "@supabase/supabase-js";
 
 export interface iMemberState {
   members: iMember[];
-  selected: iMember;
+  user: User | null;
   searched: iMember[];
   rendered: iMember[]
 }
 
 const state = (): iMemberState => ({
   members: [],
-  selected: {},
+  user: null,
   searched: [],
   rendered: []
 })
@@ -37,8 +38,8 @@ export const useMemberStore = defineStore('memberStore', {
     setRendered(members: iMember[]) {
       this.rendered = members
     },
-    setSelected(member: iMember) {
-      this.selected = { ...this.selected, ...member}
+    setUser(session: Session | null) {
+      this.user = session ? session.user : null
     },
     addToRender(members: iMember[]) {
       this.rendered.push(...members)

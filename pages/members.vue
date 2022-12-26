@@ -2,9 +2,9 @@
   <MembersComponent />
 </template>
 <script setup lang="ts">
-  
+
 definePageMeta({
   layout: "catalog",
-  middleware: "auth"
+  middleware: "out"
 });
 </script>

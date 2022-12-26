@@ -31,13 +31,13 @@
 // data / var
 const { subline_small, bottomNavLink, bottomNavLinkIcon } = useUi()
 const route = useRoute()
-const supabase = useSupabaseClient()
+const supabase = useSupabaseAuthClient()
 
 // functions
 const color = (type: string) => route.name === type ? `text-rcnblue-500` : `text-rcngray-900`
 const signOut = async () => {
   await supabase.auth.signOut()
-  location.href = "/"
+  navigateTo("/")
 }
 </script>
 <style lang="">

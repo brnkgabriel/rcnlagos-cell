@@ -1,11 +1,9 @@
-// export default defineNuxtRouteMiddleware((to, from) => {
-//   const userOnCookie = useCookie("user")
-//   if (!userOnCookie.value) {
-//     return navigateTo({
-//       path: "/auth/login",
-//       query: {
-//         redirect: to.path
-//       }
-//     })
-//   }
-// })
+
+export default defineNuxtRouteMiddleware(async (to, from) => {
+  const user = useSupabaseUser()
+  const guardedPaths = ['/members']
+  console.log("user", user.value)
+  if (!user.value && guardedPaths.includes(to.path)) {
+    return navigateTo(`/auth/login/?redirect=${to.path.split("/")[1]}`)
+  }
+})

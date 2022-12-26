@@ -4,14 +4,11 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-import authStore from "~~/store/index"
 import { useMemberStore } from "~~/store/members-store"
 import { fromLocalStorage, toLocalStorage } from "./composables/util";
 
 const store = useMemberStore()
-const user = useSupabaseUser()
 const supabase = useSupabaseClient()
-const router = useRoute()
 
 watch(store, () => {
   toLocalStorage("memberState", store.$state)
@@ -36,8 +33,7 @@ watch(store, () => {
 // }
 
 supabase.auth.onAuthStateChange((_, session) => {
-  if (!session?.user) navigateTo("/login")
-  authStore.methods.setUser(session)
+  store.setUser(session)
 })
 
 watchEffect(() => {

@@ -22,11 +22,19 @@
 const client = useSupabaseClient()
 const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat;background-position:center;background-size:cover`)
 
-const { mainline, subline_small, homeNavLink } = useUi()
+const { mainline, homeNavLink } = useUi()
+const route = useRoute()
 
-const signIn = async () => {
-  const cred = await client.auth.signInWithOAuth({ provider: "google" })
-  console.log("cred is", cred)
-  
+console.log("from login component, redirect is", route.query.redirect)
+
+const url: string | undefined = route.query.redirect as string ?? ""
+
+console.log("redirect is", url)
+
+const signIn = () => {
+  client.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: `http://localhost:3000/${url}` }
+  }).then(() => console.log("successfully signed in"))
 }
 </script>

@@ -1,8 +1,10 @@
-// export default defineNuxtRouteMiddleware((to, from) => {
-//   const userOnCookie = useCookie("user")
+import { useMemberStore } from "~~/store/members-store"
 
-//   if (userOnCookie.value) {
-//     const url = userOnCookie.value === constants.registered ? to.path : "/auth/register"
-//     return navigateTo(url)
-//   }
-// })
+export default defineNuxtRouteMiddleware((to, from) => {
+  const user = useMemberStore()
+  console.log("from in user is", user)
+  if (user) {
+    // return navigateTo(to.redirectedFrom)
+    return navigateTo(to.redirectedFrom)
+  }
+})
