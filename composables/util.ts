@@ -1,7 +1,7 @@
-import { iCombined, iMember } from "~~/helpers/interfaces";
+import { iCombined, iGlobalState, iMember } from "~~/helpers/interfaces";
 import { constants } from "./constants";
 
-export const memberName = (member: iMember | null) => member?.lastName ? `${member.firstName} ${member.lastName}` : 'loading...'
+export const memberName = (member: iMember | null) => member?.lastName ? `${member.firstName} ${member.lastName}` : 'Names'
 
 export const imgSrc = (url: string) => url ? url : '/icons/avatar.svg'
 
@@ -129,3 +129,24 @@ export const fromLocalStorage = (key: string, json?: any) => {
 }
 
 export const toLocalStorage = (key: string, data: any) => localStorage.setItem(key, JSON.stringify(data))
+
+export const getUser = async (email: string | undefined) => {
+    const supabase = useSupabaseClient()
+    let { data: res, error } = await supabase
+    .from(constants.members)
+    .select("*")
+    .eq("email", email)
+
+    if (error) throw error
+    return res
+}
+
+export const useGlobalState = () => {
+  const globalState = useState<iGlobalState>("global")
+
+  const setGlobalState = (value: iGlobalState) => {
+    globalState.value = { ...globalState.value, ...value }
+  }
+
+  return { globalState, setGlobalState }
+}

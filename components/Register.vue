@@ -1,26 +1,98 @@
 <template>
-    <div class="w-full h-full">
-      <div aria-label="slides" class="relative w-full h-40% overflow-hidden">
-        <div aria-label="slide" class="h-full w-full flex items-center justify-center" :style="slide1Style"></div>
-      </div>
-      <div aria-label="bottom content" class="flex flex-col gap-y-2 h-60% justify-center items-center">
-  
-        <div aria-label="title" class="text-center text-rcnblue-500 px-4">
-          <div aria-label="top" :class="mainline">Almost there!</div>
+  <div>
+    <div :class="mainline_small" class="text-center">Almost there!!!</div>
+    <form ref="formRef" class="flex justify-center items-center flex-col gap-y-1 h-form overflow-y-auto"
+      @submit.prevent>
+      <label for="avatar" class="relative cursor-pointer">
+        <div aria-label="icon-wrap"
+          class="absolute right-0 bottom-0 bg-rcngray-700 rounded-full p-1 border-rcngray-500 border-[2px] flex items-center justify-center">
+          <Icon type="edit" :active="true" class="text-rcngray-900 w-[12px]" />
         </div>
-  
-        <div aria-label="navigation" class="flex flex-col justify-center items-center gap-y-2 capitalize">
-          <div :class="homeNavLink" class="relative cursor-pointer">
-            <img src="/icons/google.svg" class="w-[24px] absolute top-1/2 left-[8px] -translate-y-1/2" alt="google drive"/>
-            <div>Google</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </template>
-  <script setup lang="ts">
-  const client = useSupabaseClient()
-  const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat;background-position:center;background-size:cover`)
-  
-  const { mainline, subline_small, homeNavLink } = useUi()
-  </script>
+        <input name="imageFile" id="avatar" type="file" class="hidden" accept="image/*" @change="toCropImage" />
+        <img class="rounded-full w-[80px]" :src="imgSrc('')" alt="avatar" />
+      </label>
+      <input type="text" id="firstName" name="firstName" autocomplete="off" :class="input" placeholder="First name"
+        v-model="selected.firstName" />
+      <input type="text" id="lastName" name="lastName" autocomplete="off" :class="input" placeholder="Last name"
+        v-model="selected.lastName" />
+      <input type="email" id="email" name="email" autocomplete="off" :class="input" placeholder="Email"
+        v-model="selected.email" />
+      <input type="number" id="phoneNumber" name="phoneNumber" autocomplete="off" :class="input" placeholder="Email"
+        v-model="selected.phoneNumber" />
+      <input type="text" id="homeAddress" name="homeAddress" autocomplete="off" :class="input"
+        placeholder="home address" v-model="selected.homeAddress" />
+      <input type="text" id="occupation" name="occupation" autocomplete="off" :class="input" placeholder="Occupation"
+        v-model="selected.occupation" />
+      <input type="text" id="birthday" name="birthday" autocomplete="off" :class="input" placeholder="Birthday"
+        v-model="selected.birthday" />
+      <input type="text" id="weddingAnniversary" name="weddingAnniversary" autocomplete="off" :class="input"
+        placeholder="Wedding anniversary" v-model="selected.weddingAnniversary" />
+      <SwitchComponent left="male" right="female" :value="handleGender" name="gender" :class="subline" />
+      <button type="submit" :class="button" @click="handleSubmit">submit</button>
+    </form>
+    <CropperModal v-if="isOpen" :is-open="isOpen" :img-file="imgFile" @cropped="onCrop" @opened="onOpened" />
+  </div>
+</template>
+<script setup lang="ts">
+import { iMember, iUpload } from "~~/helpers/interfaces"
+import { Ref } from "vue";
+import CropperModal from "~~/components/CropperModal.vue";
+
+const { input, button, subline, mainline_small } = useUi()
+const formRef = ref()
+const selected = ref<iMember>({})
+
+const isOpen = ref(false)
+const imgFile: Ref<iUpload> = ref({
+  file: "",
+  name: "",
+  path: "",
+  type: ""
+})
+
+const handleGender = (value: string) => {
+  console.log("from update page, gender is", value)
+}
+
+const onCrop = async (toUpload: iUpload) => {
+  selected.value.imageUrl = toUpload.file
+
+  console.log("data from client", toUpload)
+  try {
+    const fetchOptions = {
+      headers: { "Content-type": "multipart/form-data" },
+      method: 'POST',
+      body: toUpload
+    }
+    const { data } = await useFetch(constants.imageUploadApiUrl, fetchOptions)
+    console.log("data from server", data.value)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const onOpened = (flag: boolean) => isOpen.value = flag
+
+const toCropImage = async (evt: Event) => {
+  const target = evt.target as HTMLInputElement
+
+  if (target.files) {
+    const fileObj = target.files[0]
+    const file = await getBase64(fileObj) as string
+    isOpen.value = true
+    imgFile.value = {
+      file,
+      name: fileObj.name,
+      path: id(memberName(selected.value), '-'),
+      type: fileObj.type
+    }
+  }
+}
+
+const handleSubmit = (evt: Event) => {
+  const formData = new FormData(formRef.value)
+  const entries = Object.fromEntries(formData.entries())
+  console.log("form entries", entries)
+}
+
+</script>

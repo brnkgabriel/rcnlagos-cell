@@ -26,9 +26,9 @@
 
 const { subline_small, homeNavLink, mainline } = useUi()
 
-const route = useRoute()
+// const route = useRoute()
 
-console.log("from home", route.query)
+// console.log("from home", route.query)
  
 const slide1Style = ref(`background:url('/images/prayer_678x452.jpeg') no-repeat;background-position:center;background-size:cover`)
 definePageMeta({

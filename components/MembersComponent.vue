@@ -7,11 +7,11 @@
         <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
           <div aria-label="text" class="w-full">
             <div :class="mainline_small + ' ' + texttrim">{{memberName(selected)}}</div>
-            <div :class="subline_small + ' ' + texttrim">{{ selected.occupation }}</div>
-            <div :class="subline_small + ' ' + texttrim" >{{ selected.birthday }}</div>
+            <div :class="subline_small + ' ' + texttrim">{{ selected.occupation ?? "occupation" }}</div>
+            <div :class="subline_small + ' ' + texttrim" >{{ selected.birthday ?? "birthday" }}</div>
           </div>
           <div aria-label="home address" class="text-xxs font-semibold capitalize w-full">
-            {{ selected.homeAddress }}
+            {{ selected.homeAddress ?? "Home address" }}
           </div>
           <div aria-label="icons" class="flex justify-start gap-x-4 sm:gap-x-0 sm:justify-between items-center w-full">
             <a :href="constants.whatsappIcon(selected)" class="shadow-cta rounded-full">

@@ -69,3 +69,8 @@ export interface iUpload {
   file: string;
   type: string;
 }
+
+export interface iGlobalState {
+  fromRoute: string;
+  toRoute: string;
+}

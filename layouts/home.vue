@@ -8,5 +8,15 @@
 </template>
 <script setup lang="ts">
 
+const user = useSupabaseUser()
+const { globalState } = useGlobalState()
+
+watch(user, () => {
+  console.log("from home layout user", globalState.value)
+  const { fromRoute, toRoute } = globalState.value
+
+  if (fromRoute === "/" && toRoute === "/") navigateTo("/members")
+  else if (user.value) navigateTo(globalState.value.toRoute)
+})
 const { logo } = useUi()
 </script> 
