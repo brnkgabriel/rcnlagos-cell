@@ -7,7 +7,7 @@
         <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
           <div aria-label="text" class="w-full">
             <div :class="mainline_small + ' ' + texttrim">{{memberName(selected)}}</div>
-            <div :class="subline_small + ' ' + texttrim">{{ selected.occupation ?? "occupation" }}</div>
+            <div :class="subline_small + ' ' + texttrim">{{ selected.occupation ?? "occupation" }} ({{ selected.maritalStatus ?? "marital status" }})</div>
             <div :class="subline_small + ' ' + texttrim" >{{ selected.birthday ?? "birthday" }}</div>
           </div>
           <div aria-label="home address" class="text-xxs font-semibold capitalize w-full">
@@ -21,7 +21,7 @@
               class="shadow-cta rounded-full p-2 bg-rcnorange-500 w-[32px] flex justify-center items-center">
               <Icon type="phonecall" :active="true" class="w-[16px] text-white" />
             </a>
-            <NuxtLink :href="'/member' + editMemberUrl(selected)"
+            <NuxtLink v-if="canEdit" :href="'/member' + editMemberUrl(selected)"
               class="shadow-cta rounded-full p-2 bg-rcngray-700 w-[32px] flex justify-center items-center">
               <Icon type="edit" :active="true" class="w-[16px] text-rcngray-900" />
             </NuxtLink>
@@ -69,6 +69,7 @@
   const { data, error } = await useLazyFetch(() => constants.membersApiUrl)
   
   const store = useMemberStore()
+  const user = useSupabaseUser()
   
   const members: iMember[] | null = typeMember(data.value) 
   const placeholder = computed(() => `Search for ${name as string} ...`)
@@ -77,6 +78,9 @@
   const maxItemsToLoad = 10
   const searchTerm = ref("")
   const selected: Ref<iMember> = ref({})
+
+  const canEdit = computed(() => selected.value.email === user.value?.email)
+  
   
   store.setMembers(members ? members : [])
   store.setSearched("")
