@@ -4,7 +4,7 @@
     <!-- <Disclosure /> -->
     <div :class="mainline_small" class="text-center">Almost there!!!</div>
     <div :class="subline_small" class="text-center">All tabs must be opened before submitting to capture your details</div>
-    <form ref="formRef" @submit.prevent="handleSubmit" class="mx-auto w-full max-w-md rounded-2xl bg-white p-2 h-full overflow-y-auto flex flex-col gap-y-2">
+    <form ref="formRef" @submit.prevent="handleSubmit" class="mx-auto w-full max-w-md rounded-2xl bg-white p-2 pb-8 h-full overflow-y-auto flex flex-col gap-y-2">
       <Disclosure v-slot="{ open }">
         <DisclosureButton
           class="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-rcnblue-500 hover:bg-rcnblue-200 focus:outline-none focus-visible:ring focus-visible:ring-rcnblue-100 focus-visible:ring-opacity-75">
