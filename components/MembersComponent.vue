@@ -7,7 +7,8 @@
         <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
           <div aria-label="text" class="w-full">
             <div :class="mainline_small + ' ' + texttrim">{{memberName(selected)}}</div>
-            <div :class="subline_small + ' ' + texttrim">{{ selected.occupation ?? "occupation" }} ({{ selected.maritalStatus ?? "marital status" }})</div>
+            <div :class="subline_small + ' ' + texttrim">{{ selected.occupation ?? "occupation" }}</div>
+            <div :class="subline_small + ' ' + texttrim">{{ selected.maritalStatus ?? "marital status" }}</div>
             <div :class="subline_small + ' ' + texttrim" >{{ selected.birthday ?? "birthday" }}</div>
           </div>
           <div aria-label="home address" class="text-xxs font-semibold capitalize w-full">
