@@ -24,7 +24,9 @@ export const useUi = () => {
     memberItem: "flex flex-col basis-[100px] flex-grow w-1/2 sm:w-1/4 overflow-hidden rounded-md shadow-custom bg-white cursor-pointer",
     memberItemOccupationIcon: "w-[16px] h-[16px]",
     search: "absolute w-[32px] h-[32px] right-[4px] top-half -translate-y-1/2 bg-rcnblue-500 rounded-md flex justify-center items-center cursor-pointer",
-    searchIcon: "w-[24px] h-[24px] text-white"
+    searchIcon: "w-[24px] h-[24px] text-white",
+    dropdown: "absolute top-full right-[8px] z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none capitalize overflow-hidden",
+    dropdownLogout: "text-gray-700 block px-4 py-2 text-sm cursor-pointer"
   }
 }
 

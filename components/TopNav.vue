@@ -7,15 +7,27 @@
       <div class="uppercase" :class="mainline">oko oba</div>
       <div class="uppercase" :class="subline">prayer cell</div>
     </div>
-    <div aria-label="notification" class="rounded-full border-2 border-bglight-700 p-[2px] h-[40px] w-[40px]">
-      <img class="rounded-full" src="/icons/avatar.svg" alt="avatar"/>
+    <div aria-label="notification" class="rounded-full border-2 border-bglight-700 p-[2px] h-[40px] w-[40px] cursor-pointer" @click="toggleDropdown">
+      <img class="rounded-full" :src="imgSrc(props.avatar as string)" alt="avatar"/>
     </div>
+    <Dropdown :user-name="userName" />
   </div>
 </template>
-<script setup="ts">
+<script setup lang="ts">
 
 const { subline, mainline, center } = useUi()
+
+const show = ref(false)
+
+const toggleDropdown = () => {
+  console.log("toggling dropdown") 
+  show.value = !show.value
+}
+
+provide("show", { show })
+
+const props = defineProps<{
+  avatar?: string
+  userName?: string
+}>()
 </script>
-<style lang="">
-    
-</style>

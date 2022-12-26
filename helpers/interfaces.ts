@@ -73,4 +73,5 @@ export interface iUpload {
 export interface iGlobalState {
   fromRoute: string;
   toRoute: string;
+  user: iMember;
 }
