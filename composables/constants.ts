@@ -54,8 +54,7 @@ export const constants = {
     // @ts-ignore
     const num = phone(number)
     number = num.slice(1, num.length)
-    const prefix = member?.gender === 'male' ? "Bro. " : "Sis. "
 
-    return `https://api.whatsapp.com/send?phone=${number}&text=Hello%20${prefix}${member?.firstName}`
+    return `https://api.whatsapp.com/send?phone=${number}&text=Hello%20${member?.prefix} ${member?.firstName}`
   }
 }

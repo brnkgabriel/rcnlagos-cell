@@ -11,7 +11,7 @@
     </div>
     <!-- <img v-if="!loaded" aria-label="actual image" class="w-full" loading="lazy" src="/icons/image-placeholder.svg" alt="skeleton" /> -->
     <div aria-label="details" class="p-2">
-      <div aria-label="name" :class="mainline_small + ' ' + texttrim">{{ name }}</div>
+      <div aria-label="name" :class="mainline_small + ' ' + texttrim">{{ props.item.prefix + ' ' +  props.item.firstName }}</div>
       <div aria-label="occupation" :class="subline_small" class="flex gap-x-1">
         <Icon type="occupation" :class="memberItemOccupationIcon" :active="true" />
         <div :class="texttrim">{{ props.item.occupation }}</div>
@@ -22,8 +22,6 @@
 <script setup lang="ts">
 import { iMember } from "~~/helpers/interfaces"
 import { vLoaded } from "~~/helpers/directives"
-
-const name = computed(() => `${props.item.firstName} ${props.item.lastName}`)
 
 const {
   mainline_small,

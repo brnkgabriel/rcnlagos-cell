@@ -1,7 +1,7 @@
 import { iCombined, iGlobalState, iMember } from "~~/helpers/interfaces";
 import { constants } from "./constants";
 
-export const memberName = (member: iMember | null) => member?.lastName ? `${member.firstName} ${member.lastName}` : 'Names'
+export const memberName = (member: iMember | null) => member?.lastName ? `${member.prefix} ${member.firstName} ${member.lastName}` : 'Names'
 
 export const imgSrc = (url: string) => url ? url : '/icons/avatar.svg'
 

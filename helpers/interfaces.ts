@@ -29,6 +29,7 @@ export interface iMember {
   occupation?: string;
   workAddress?: string;
   role?: string;
+  prefix?: string;
 }
 
 export interface iMeeting {
@@ -73,5 +74,4 @@ export interface iUpload {
 export interface iGlobalState {
   fromRoute: string;
   toRoute: string;
-  user: iMember;
 }
