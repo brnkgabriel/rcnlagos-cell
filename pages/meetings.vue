@@ -3,7 +3,7 @@
     <div aria-label="slides" class="relative w-full h-40% overflow-hidden">
       <div aria-label="slide" class="h-full w-full flex items-center justify-center" :style="slide1Style"></div>
     </div>
-    <div aria-label="bottom content" class="flex flex-col gap-y-6 h-60% justify-around items-center">
+    <div aria-label="bottom content" class="flex flex-col gap-y-6 h-60% justify-center items-center">
 
       <div aria-label="title" class="text-center text-rcnblue-500 px-4">
         <div aria-label="top" :class="mainline">Meetings</div>
