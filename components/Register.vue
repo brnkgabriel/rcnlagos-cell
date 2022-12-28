@@ -106,7 +106,7 @@ import { iMember, iUpload } from "~~/helpers/interfaces"
 import { Ref } from "vue";
 import CropperModal from "~~/components/CropperModal.vue";
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
-import { ChevronUpIcon } from '@heroicons/vue/20/solid'
+import { ChevronUpIcon } from '@heroicons/vue/24/solid/index'
 
 const { input, button, subline, mainline_small, subline_small } = useUi()
 const formRef = ref()
