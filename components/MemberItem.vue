@@ -1,7 +1,7 @@
 
 <template>
   <div aria-label="membersItem" :class="memberItem">
-    <div class="">
+    <div :style="imageStyle">
       <img
         aria-label="actual image"
         class="w-full object-cover min-h-[116px] opacity-0" loading="lazy"
@@ -22,6 +22,7 @@
 <script setup lang="ts">
 import { iMember } from "~~/helpers/interfaces"
 import { vLoaded } from "~~/helpers/directives"
+const imageStyle = ref(`background:url('/icons/image-placeholder.svg) no-repeat;background-position:center;background-size:cover`)
 
 const {
   mainline_small,
