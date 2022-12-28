@@ -41,7 +41,7 @@ import {
   ListboxOptions,
   ListboxOption,
 } from '@headlessui/vue'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/24/solid/index'
 
 const categories = [
   { name: 'Single' },

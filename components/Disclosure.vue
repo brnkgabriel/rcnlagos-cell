@@ -37,5 +37,5 @@
 
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
-import { ChevronUpIcon } from '@heroicons/vue/20/solid'
+import { ChevronUpIcon } from '@heroicons/vue/24/solid/index'
 </script>
