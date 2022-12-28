@@ -2,14 +2,14 @@
   <component :is="comp.icon" :class="comp.color" />
 </template>
 <script setup lang="ts">
-import MeetingFilled from "./icons/MeetingFilled.vue";
-import MeetingOutline from "./icons/MeetingOutline.vue";
-import MembersFilled from "./icons/MembersFilled.vue";
-import MembersOutline from "./icons/MembersOutline.vue";
-import Power from "./icons/Power.vue";
-import Search from "./icons/Search.vue";
-import PhoneCallOutline from "./icons/PhoneCallOutline.vue"
-import PhoneCallSolid from "./icons/PhoneCallSolid.vue"
+import MeetingFilled from "./icon-components/MeetingFilled.vue";
+import MeetingOutline from "./icon-components/MeetingOutline.vue";
+import MembersFilled from "./icon-components/MembersFilled.vue";
+import MembersOutline from "./icon-components/MembersOutline.vue";
+import Power from "./icon-components/Power.vue";
+import Search from "./icon-components/Search.vue";
+import PhoneCallOutline from "./icon-components/PhoneCallOutline.vue"
+import PhoneCallSolid from "./icon-components/PhoneCallSolid.vue"
 
 const comp = computed(() => {
   let icon = null

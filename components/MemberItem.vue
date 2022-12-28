@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import { iMember } from "~~/helpers/interfaces"
 import { vLoaded } from "~~/helpers/directives"
-const imageStyle = ref(`background:url('/icons/image-placeholder.svg) no-repeat;background-position:center;background-size:cover`)
+const imageStyle = ref(`background:url(/icons/image-placeholder.svg) no-repeat;background-position:center;background-size:cover`)
 
 const {
   mainline_small,

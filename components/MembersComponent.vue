@@ -3,7 +3,9 @@
       <div :class="breadcrumb">home &gt;&gt; {{ name }}</div>
       <div aria-label="preview"
         class="shadow-custom bg-white rounded-lg w-full h-[150px] overflow-hidden flex justify-center items-center">
-        <img class="h-[150px] w-[150px] opacity-0" v-loaded :src="imgSrc(selected.imageUrl as string)" alt="" />
+        <div :style="imageStyle">
+          <img class="h-[150px] w-[150px] opacity-0" v-loaded :src="imgSrc(selected.imageUrl as string)" alt="" />
+        </div>
         <div aria-label="details" class="w-details p-2 flex flex-col justify-between h-full items-start">
           <div aria-label="text" class="w-full">
             <div :class="mainline_small + ' ' + texttrim">{{memberName(selected)}}</div>
@@ -19,11 +21,11 @@
               <img src="/icons/whatsapp.svg" class="w-[32px]" alt="whatsapp icon" />
             </a>
             <a :href="'tel:' + phone(selected.phoneNumber)"
-              class="shadow-cta rounded-full p-2 bg-rcnorange-500 w-[32px] flex justify-center items-center">
+              class="shadow-cta rounded-full p-2 bg-rcnorange-500 w-[32px] h-[32px] flex justify-center items-center">
               <Icon type="phonecall" :active="true" class="w-[16px] text-white" />
             </a>
             <NuxtLink v-if="canEdit" :href="'/member' + editMemberUrl(selected)"
-              class="shadow-cta rounded-full p-2 bg-rcngray-700 w-[32px] flex justify-center items-center">
+              class="shadow-cta rounded-full p-2 bg-rcngray-700 w-[32px] h-[32px] flex justify-center items-center">
               <Icon type="edit" :active="true" class="w-[16px] text-rcngray-900" />
             </NuxtLink>
           </div>
@@ -65,6 +67,7 @@
   import { Ref } from "vue";
   import { fromLocalStorage, toLocalStorage } from "~~/composables/util";
   
+  const imageStyle = ref(`background:url(/icons/image-placeholder.svg) no-repeat;background-position:center;background-size:cover`)
   const { breadcrumb, input, subline_small, mainline_small, texttrim, search, searchIcon } = useUi()
   const { name } = useRoute()
   const { data, error } = await useLazyFetch(() => constants.membersApiUrl)
