@@ -35,7 +35,7 @@
         <div aria-label="number" class="mt-[8px] mb-[4px] uppercase" :class="breadcrumb">{{ store.searched.length }} member(s)</div>
         <div v-if="store.rendered" ref="membersRoot" aria-label="membersList"
           class="w-full h-cardlistheight overflow-auto flex flex-wrap gap-2" v-infinite-scroll>
-          <div :class="mainline_small" v-if="store.rendered.length == 0">No result found for {{searchTerm}} :(</div>
+          <div :class="mainline_small" v-if="store.rendered.length == 0">Loading... {{searchTerm}}</div>
           <MemberItem
             v-for="(member, idx) in store.rendered"
             @click="setSelected(member)"
