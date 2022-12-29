@@ -2,7 +2,9 @@ import { iMember } from "~~/helpers/interfaces";
 
 export const constants = {
   membersApiUrl: "/api/g-members",
+  updateMemberUrl: "/api/u-member",
   imageUploadApiUrl: "/api/p-image",
+  storageUrl: (path: string) => `https://esoxpbrbxabdqbplpgnk.supabase.co/storage/v1/object/public/pictures/${path}`,
   monthMap: {
     january: 1,
     february: 2,

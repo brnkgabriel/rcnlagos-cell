@@ -10,7 +10,7 @@
           class="absolute right-0 bottom-0 bg-rcngray-700 rounded-full p-1 border-rcngray-500 border-[2px] flex items-center justify-center">
           <Icon type="edit" :active="true" class="text-rcngray-900 w-[12px]" />
         </div>
-        <input name="imageFile" id="avatar" type="file" class="hidden" accept="image/*" @change="toCropImage" />
+        <input name="imageUrl" id="avatar" type="file" class="hidden" accept="image/*" @change="toCropImage" />
         <img class="rounded-full w-[80px]" :src="imgSrc(selected?.imageUrl as string)" :alt="selected.firstName" />
       </label>
       <input type="text" id="firstName" name="firstName" autocomplete="off" :class="input" placeholder="First name"
@@ -74,8 +74,11 @@ const onCrop = async (toUpload: iUpload) => {
       method: 'POST',
       body: toUpload
     }
-    const { data } = await useFetch(constants.imageUploadApiUrl, fetchOptions)
-    console.log("data from server", data.value)
+    const { data, error } = await useFetch(constants.imageUploadApiUrl, fetchOptions)
+    if (error.value) throw error
+    const url = constants.storageUrl(data.value as string)
+    // selected.value.imageUrl = url
+    console.log("url from server", url, "data", data.value)
   } catch (error) {
     console.log(error)
   }
@@ -93,16 +96,21 @@ const toCropImage = async (evt: Event) => {
     imgFile.value = {
       file,
       name: fileObj.name,
-      path: id(memberName(selected.value), '-'),
+      path: id(folderName(selected.value), '-'),
       type: fileObj.type
     }
   }
 }
 
-const handleSubmit = (evt: Event) => {
+const handleSubmit = async (evt: Event) => {
   const formData = new FormData(formRef.value)
   const entries = Object.fromEntries(formData.entries())
-  console.log("form entries", entries)
+  delete entries.imageUrl
+  selected.value = { ...selected.value, ...entries }
+  const { data, error } = await useFetch(constants.updateMemberUrl, { method: "POST", body: selected.value })
+  if (error.value) throw error
+  toLocalStorage("selected", selected.value)
+  navigateTo("/members")
 }
 
 watchEffect(() => console.log("isOpen is", isOpen.value))

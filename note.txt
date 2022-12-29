@@ -48,3 +48,8 @@ todo: ensure we find where to update the values of useState
   - https://github.com/chengpeiquan/vue-picture-cropper/blob/main/docs/components/WithCompositionAPI.vue
 
 // todo: create an auth layout and abstract similarities between login and signup into that layout.
+
+// todo: update storage bucket with images
+// todo: update avatar on top nav with changed image
+// todo: on navigate back to members page, refresh state
+// todo: put preloaders in between updates

@@ -11,17 +11,16 @@ export default defineEventHandler(async (event) => {
     const res = await fetch(body.file)
     const blob = await res.blob()
 
-    const response = await supabase.storage
+    const { data, error } = await supabase.storage
       .from("pictures")
       .upload(filePath, blob, {
         contentType: body.type,
         upsert: true,
       })
 
-    return {
-      data: response.data,
-      error: response.error?.message
-    }
+    if (error) throw error
+
+    return data.path
   } catch (error: any) {
     return { error: error.message }
   }

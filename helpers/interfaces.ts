@@ -21,7 +21,6 @@ export interface iMember {
   email?: string;
   gender?: string;
   imageUrl?: string;
-  imageFile?: string;
   birthday?: string;
   maritalStatus?: string;
   weddingAnniversary?: string;

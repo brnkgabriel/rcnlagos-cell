@@ -18,7 +18,7 @@
                 class="absolute right-0 bottom-0 bg-rcngray-700 rounded-full p-1 border-rcngray-500 border-[2px] flex items-center justify-center">
                 <Icon type="edit" :active="true" class="text-rcngray-900 w-[12px]" />
               </div>
-              <input name="imageFile" id="avatar" type="file" class="hidden" accept="image/*" @change="toCropImage" />
+              <input name="imageUrl" id="avatar" type="file" class="hidden" accept="image/*" @change="toCropImage" />
               <img class="rounded-full w-[80px]" :src="imgSrc(selected.imageUrl as string)" alt="avatar" />
             </label>
             <SwitchComponent left="male" right="female" :value="handleGender" name="gender" :class="subline" />
